@@ -6,7 +6,7 @@ import { AddNewItem } from "../newitem/AddNewItem";
 import { useAppState } from "../../provider/AppStateContext";
 
 export const Board = ({ text, index }: BoardProps) => {
-  const state = useAppState();
+  const { state, dispatch } = useAppState();
   return (
     <ColumnContainer>
       <ColumnTitle>{text}</ColumnTitle>
@@ -15,7 +15,9 @@ export const Board = ({ text, index }: BoardProps) => {
       ))}
       <AddNewItem
         addTask={true}
-        onAdd={() => console.log}
+        onAdd={(text) =>
+          dispatch({ type: "ADD_NEW_TASK", payload: { text, index } })
+        }
         text="+ Add New Task"
       />
     </ColumnContainer>

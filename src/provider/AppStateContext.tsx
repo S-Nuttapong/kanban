@@ -1,5 +1,11 @@
-import React, { createContext, useContext, PropsWithChildren } from "react";
-import { AppState } from "../interface/IAppStateContext";
+import React, {
+  createContext,
+  useContext,
+  PropsWithChildren,
+  useReducer,
+} from "react";
+import { AppStateReducer } from "../reducer/AppStateReducer";
+import { AppState, IAppStateReducer } from "../interface/IAppStateReducer";
 
 const appData: AppState = {
   lists: [
@@ -8,11 +14,12 @@ const appData: AppState = {
   ],
 };
 
-const AppStateContext = createContext<AppState>({} as AppState);
+const AppStateContext = createContext<IAppStateReducer>({} as IAppStateReducer);
 
 export const AppStateProvider = ({ children }: PropsWithChildren<{}>) => {
+  const [state, dispatch] = useReducer(AppStateReducer, appData);
   return (
-    <AppStateContext.Provider value={appData}>
+    <AppStateContext.Provider value={{ state, dispatch }}>
       {children}
     </AppStateContext.Provider>
   );
