@@ -1,4 +1,7 @@
 export interface BoardProps {
-    index: number;
+    id: string;
     text: string;
+    index: number;
+    isPreview?: boolean;
+
 }
