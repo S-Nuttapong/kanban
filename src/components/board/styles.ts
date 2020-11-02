@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { CustomDragContainer } from "../preview/styles";
 
-export const BoardContainer = styled(CustomDragContainer)`
+export const ColumnContainer = styled.div`
   background-color: #ebecf0;
   width: 300px;
   min-height: 40px;
@@ -11,7 +10,7 @@ export const BoardContainer = styled(CustomDragContainer)`
   flex-grow: 0;
 `;
 
-export const BoardTitle = styled.div`
+export const ColumnTitle = styled.div`
   padding: 6px 16px 12px;
   font-weight: bold;
 `;
