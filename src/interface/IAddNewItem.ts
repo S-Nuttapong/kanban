@@ -5,6 +5,7 @@ export interface AddNewItemButtonProps {
 export interface AddNewItemProps extends NewFormProps {
   addTask?: boolean;
   text: string;
+  initShowForm?: boolean; 
 }
 
 export interface NewFormProps {

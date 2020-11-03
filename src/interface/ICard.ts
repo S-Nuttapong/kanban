@@ -1,3 +1,4 @@
-export interface CardProps {
-    text: string;
+import { BoardProps } from "./IBoard";
+export interface CardProps extends BoardProps {
+  boardIndex: number;
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-import { AppStateProvider } from "./provider/AppStateContext";
+import { App } from "./App";
+import { Wrapper } from "./testHelper";
 
 ReactDOM.render(
-  <AppStateProvider>
+  <Wrapper>
     <App />
-  </AppStateProvider>,
+  </Wrapper>,
   document.getElementById("root")
 );

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AddNewItemButtonProps } from "../../interface/IAddNewItem";
 
 export const AddNewItemButton = styled.div<AddNewItemButtonProps>`
-  color: ${(props) => (props.addTask ? "#000" : "#fff")};
+  color: ${(props) => (props.addTask ? "#000000" : "#ffffff")};
   border-radius: 3px;
   border: none;
   max-width: 300px;
