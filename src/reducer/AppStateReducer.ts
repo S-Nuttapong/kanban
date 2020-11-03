@@ -1,5 +1,5 @@
 import { AppState, Action } from "../interface/IAppStateReducer";
-import { nanoid } from "nanoid";
+import nanoid from "nanoid";
 import { switchItem } from "../utils/switchItem";
 
 export const AppStateReducer = (state: AppState, action: Action) => {

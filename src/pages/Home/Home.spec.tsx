@@ -77,7 +77,7 @@ describe("Home", () => {
         expect(container.innerHTML).toMatch("+ Add New Board");
       });
     });
-    describe("on drag Board", () => {
+    describe("on drag", () => {
       const mockAppStore = {
         lists: [
           {
@@ -87,38 +87,64 @@ describe("Home", () => {
           },
         ],
       };
+      describe("drags Board", () => {
+        it("toggle CustomPreview component with correct css", () => {
+          const { getAllByText } = render(
+            <Wrapper appStore={mockAppStore}>
+              <Home />
+            </Wrapper>
+          );
 
-      // const dragAndDrop = (src: Element, dst: Element) => {
-      //   fireEvent.dragStart(src);
-      //   fireEvent.dragEnter(dst);
-      //   fireEvent.drop(dst);
-      //   fireEvent.dragLeave(dst);
-      //   fireEvent.dragEnd(src);
-      // };
-
-      it("toggle CustomPreview component with correct css", () => {
-        const { getAllByText } = render(
-          <Wrapper appStore={mockAppStore}>
-            <Home />
-          </Wrapper>
-        );
-
-        const dragElement = getAllByText("Foo Board");
-        expect(dragElement.length).toEqual(1);
-        fireEvent.dragStart(dragElement[0]);
-        expect(getAllByText("Foo Board").length).toEqual(2);
+          const dragElement = getAllByText("Foo Board");
+          expect(dragElement.length).toEqual(1);
+          fireEvent.dragStart(dragElement[0]);
+          expect(getAllByText("Foo Board").length).toEqual(2);
+        });
       });
-      it("renders Board with correct css", () => {
-        const { queryAllByRole } = render(
-          <Wrapper appStore={mockAppStore}>
-            <Home />
-          </Wrapper>
-        );
-        const boardDragElement = queryAllByRole("generic")[2];
-        expect(boardDragElement).toHaveStyleRule("opacity", "1");
-        fireEvent.dragStart(boardDragElement);
-        expect(boardDragElement).toHaveStyleRule("opacity", "0");
+      describe("drags Card", () => {
+        it("renders Board with correct css", () => {
+          const { queryAllByRole } = render(
+            <Wrapper appStore={mockAppStore}>
+              <Home />
+            </Wrapper>
+          );
+          const boardDragElement = queryAllByRole("generic")[2];
+          expect(boardDragElement).toHaveStyleRule("opacity", "1");
+          fireEvent.dragStart(boardDragElement);
+          expect(boardDragElement).toHaveStyleRule("opacity", "0");
+        });
+        it("toggle Custom Card Preview component with correct css", () => {
+          const { getAllByText } = render(
+            <Wrapper appStore={mockAppStore}>
+              <Home />
+            </Wrapper>
+          );
+
+          const dragElement = getAllByText("Foo Task");
+          expect(dragElement.length).toEqual(1);
+          fireEvent.dragStart(dragElement[0]);
+          expect(getAllByText("Foo Task").length).toEqual(2);
+        });
+        it("renders Card with correct css", () => {
+          const { queryByText } = render(
+            <Wrapper appStore={mockAppStore}>
+              <Home />
+            </Wrapper>
+          );
+          const cardDragElement = queryByText("Foo Task") as HTMLDivElement;
+          expect(cardDragElement).toHaveStyleRule("opacity", "1");
+          fireEvent.dragStart(cardDragElement);
+          expect(cardDragElement).toHaveStyleRule("opacity", "0");
+        });
       });
     });
   });
 });
+
+// const dragAndDrop = (src: Element, dst: Element) => {
+//   fireEvent.dragStart(src);
+//   fireEvent.dragEnter(dst);
+//   fireEvent.drop(dst);
+//   fireEvent.dragLeave(dst);
+//   fireEvent.dragEnd(src);
+// };

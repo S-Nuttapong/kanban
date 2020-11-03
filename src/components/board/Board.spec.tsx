@@ -9,20 +9,19 @@ describe("Board", () => {
       id: "0",
       text: "Foo Board",
     };
-    const mockUseAppState = () => ({
-      state: {
-        lists: [
-          {
-            ...mockBoardData,
-            tasks: [{ id: "0", text: "Foo Card" }],
-          },
-        ],
-        dispatch: undefined
-      },
-    });
+
+    const mockAppStore = {
+      lists: [
+        {
+          ...mockBoardData,
+          tasks: [{ id: "0", text: "Foo Card" }],
+        },
+      ],
+    };
+
     const { container } = render(
-      <Wrapper>
-        <Board {...mockBoardData} index={0} useAppStateHook={mockUseAppState} />
+      <Wrapper appStore={mockAppStore}>
+        <Board {...mockBoardData} index={0} />
       </Wrapper>
     );
     expect(container.innerHTML).toMatch("Foo Board");
