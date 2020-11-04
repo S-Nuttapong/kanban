@@ -14,7 +14,6 @@ export const Board = ({ id, text, index, isPreview, useAppStateHook = useAppStat
   const drop = useDropBoard({ id, text, index, type: "BOARD" });
 
   drag(drop(boardRef));
-
   return (
     <BoardContainer
       isPreview={isPreview}

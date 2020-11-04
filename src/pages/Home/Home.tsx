@@ -27,6 +27,7 @@ export const Home = ({
       <CustomPreview />
 
       {state.lists.map((list, i) => (
+      
         <Board id={list.id} text={list.text} key={list.id} index={i} />
       ))}
       <AddNewItem
