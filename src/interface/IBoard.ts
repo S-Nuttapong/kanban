@@ -1,7 +1,6 @@
-import { useAppStateHookProps } from "./IAppStateReducer";
-export interface BoardProps extends useAppStateHookProps {
+export interface BoardProps {
   id: string;
   text: string;
   index: number;
-  isPreview?: boolean;
+  boardPreview?: boolean;
 }

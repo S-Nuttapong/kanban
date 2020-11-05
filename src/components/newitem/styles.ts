@@ -11,8 +11,11 @@ export const AddNewItemButton = styled.div<AddNewItemButtonProps>`
   transition: background 85ms ease-in;
   width: calc(100% - 24px);
   &:hover {
-    background-color: ${(props) => (props.addTask ? `#ffffffc9;` : `#ffffff52`)};
+    background-color: ${(props) =>
+      props.addTask ? `#ffffffc9;` : `#ffffff52`};
   }
+  flex-shrink: 0;
+  scroll-snap-align: center;
 `;
 
 export const NewItemFormContainer = styled.div`
@@ -21,6 +24,7 @@ export const NewItemFormContainer = styled.div`
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
+  flex-shrink: 0;
 `;
 
 export const NewItemButton = styled.button`

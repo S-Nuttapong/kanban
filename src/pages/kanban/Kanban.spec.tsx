@@ -1,5 +1,5 @@
 import React from "react";
-import { Home } from "./Home";
+import { Home } from "./Kanban";
 import { fireEvent, render } from "@testing-library/react";
 import { Wrapper } from "../../testHelper";
 import { act } from "react-dom/test-utils";

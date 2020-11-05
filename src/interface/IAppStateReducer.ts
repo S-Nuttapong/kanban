@@ -37,7 +37,3 @@ export type Action =
         hoverIndex: number;
       };
     };
-
-export interface useAppStateHookProps {
-  useAppStateHook?: () => IAppStateReducer;
-}

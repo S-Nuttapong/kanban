@@ -33,13 +33,13 @@ export const CustomPreview = () => {
           id={item.id}
           text={item.text}
           index={item.index}
-          isPreview={true}
+          boardPreview={true}
         />
       ) : (
         <Card
           id={item.id}
           text={item.text}
-          isPreview={true}
+          cardPreview={true}
           index={item.index}
           boardIndex={item.boardIndex}
         />

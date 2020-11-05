@@ -7,8 +7,8 @@ import { useAppState } from "../../provider/AppStateContext";
 import { useDragItem, useDropBoard } from "../../utils/useDnD";
 import { isHidden } from "../../utils/isHidden";
 
-export const Board = ({ id, text, index, isPreview, useAppStateHook = useAppState }: BoardProps) => {
-  const { state, dispatch } = useAppStateHook();
+export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
+  const { state, dispatch } = useAppState();
   const boardRef = useRef<HTMLDivElement>(null);
   const drag = useDragItem({ id, text, index, type: "BOARD" });
   const drop = useDropBoard({ id, text, index, type: "BOARD" });
@@ -16,8 +16,8 @@ export const Board = ({ id, text, index, isPreview, useAppStateHook = useAppStat
   drag(drop(boardRef));
   return (
     <BoardContainer
-      isPreview={isPreview}
-      isHidden={isHidden(id, "BOARD", state.dragItem, isPreview)}
+      boardPreview={boardPreview}
+      isHidden={isHidden(id, "BOARD", state.dragItem, boardPreview)}
       ref={boardRef}
     >
       <BoardTitle>{text}</BoardTitle>

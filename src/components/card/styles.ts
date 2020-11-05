@@ -9,4 +9,5 @@ export const CardContainer = styled(CustomDragContainer)`
   max-width: 300px;
   border-radius: 3px;
   box-shadow: #091e4240 0px 1px 0px 0px;
+  line-break: anywhere;
 `;

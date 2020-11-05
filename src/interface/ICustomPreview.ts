@@ -1,4 +1,6 @@
 export interface CustomDragProps {
     isHidden?: boolean
-    isPreview?: boolean
+    cardPreview?: boolean
+    boardPreview?: boolean
+
 }

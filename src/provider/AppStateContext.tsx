@@ -5,23 +5,14 @@ import React, {
   useReducer,
 } from "react";
 import { AppStateReducer } from "../reducer/AppStateReducer";
-import { AppStoreProps ,AppState, IAppStateReducer } from "../interface/IAppStateReducer";
-
-
-
-const appData: AppState = {
-  lists: [
-    { id: "0", text: "To Do", tasks: [] },
-    { id: "1", text: "Doing", tasks: [] },
-    { id: "2", text: "Done", tasks: [] },
-  ],
-};
+import { AppStoreProps, IAppStateReducer } from "../interface/IAppStateReducer";
+import { store } from "../utils/store";
 
 const AppStateContext = createContext<IAppStateReducer>(
   {} as IAppStateReducer
 );
 
-export const AppStateProvider = ({ children, appStore = appData }: PropsWithChildren<AppStoreProps>) => {
+export const AppStateProvider = ({ children, appStore = store() }: PropsWithChildren<AppStoreProps>) => {
   const [state, dispatch] = useReducer(AppStateReducer, appStore);
   return (
     <AppStateContext.Provider value={{ state, dispatch }}>
