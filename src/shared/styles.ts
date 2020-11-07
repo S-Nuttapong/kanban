@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { SidebarProps } from "../interface";
+import { SidebarProps } from "./interface";
 
 const navText = css`
   display: flex;
@@ -89,7 +89,7 @@ export const NavBarMenuItem = styled.ul`
   svg:first-of-type {
       display: flex;
       margin: auto;
-      padding-top: 1.25rem;
+      padding-top: 2rem;
       width: 3rem;
       height: 2rem;
       align-self: center;
@@ -131,5 +131,7 @@ export const Backdrop = styled.div<SidebarProps>`
       height: 100vh;
       top: 0;
       left: 0;
+      z-index: 1000;
+      overflow: hidden;
     `}
 `;

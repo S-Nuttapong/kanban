@@ -9,6 +9,7 @@ export const BoardContainer = styled(CustomDragContainer)`
   border-radius: 3px;
   padding: 8px 8px;
   flex-shrink: 0;
+  z-index: 10;
 `;
 
 export const BoardTitle = styled.div`
@@ -17,3 +18,4 @@ export const BoardTitle = styled.div`
   line-break: anywhere;
 
 `;
+

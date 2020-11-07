@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MenuBar, Backdrop } from "../navbar/styles";
+import { MenuBar, Backdrop } from "../styles";
 import * as FaIcons from "react-icons/fa";
 import * as GiIcons from "react-icons/gi";
 
@@ -11,6 +11,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-contents: center;
+  padding: 1rem 0 0.25rem 0;
 
   div:last-child {
     display: flex;

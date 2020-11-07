@@ -4,7 +4,7 @@ import * as FaIcons from "react-icons/fa";
 import * as GiIcons from "react-icons/gi"
 import { IconContext } from "react-icons";
 import { SidebarData } from "../interface";
-import { NavMenuMobile, NavMenuDesktop, NavBarMenuItem } from "./styles";
+import { NavMenuMobile, NavMenuDesktop, NavBarMenuItem } from "../styles";
 
 interface NavbarMobileProps extends SidebarData {
   sidebar: boolean;
