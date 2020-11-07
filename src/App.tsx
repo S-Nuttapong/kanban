@@ -1,16 +1,17 @@
 import React from "react";
-import { Home } from "./pages/kanban/Kanban";
-import { Landing } from "./pages/home/Home";
+import { Kanban } from "./pages/kanban/Kanban";
+import { Home } from "./pages/home/Home";
 import { Layout } from "./shared/layout/Layout";
 import { Route, Switch } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-
+import { AnimatePresence } from "framer-motion";
 
 export const App = () => (
   <Layout>
-    <Switch>
-      <Route path="/kanban" component={Home} />
-      <Route path="/" component={Landing} />
-    </Switch>
+    <AnimatePresence>
+      <Switch>
+        <Route path="/kanban" component={Kanban} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </AnimatePresence>
   </Layout>
 );
