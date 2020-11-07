@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MenuBar, Backdrop } from "../navbar/styles";
 import * as FaIcons from "react-icons/fa";
+import * as GiIcons from "react-icons/gi";
 
 const Header = styled.header`
   border-bottom: 1px solid;
@@ -9,9 +10,25 @@ const Header = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-contents: center;
+
+  div:last-child {
+    display: flex;
+    margin: auto;
+    align-items: center;
+  }
 
   span {
-    margin: auto;
+    font-weight: 600;
+    font-size: 20px;
+    color: #072e54;
+  }
+
+  span + svg {
+    color: #072e54;
+    width: 3rem !important;
+    height: 2rem !important;
+    padding-bottom: 0.2rem;
   }
 `;
 
@@ -37,11 +54,18 @@ export const Content = ({
   navbarComponent,
   children,
 }: React.PropsWithChildren<ContentProps>) => (
-  <Container style={{ marginLeft : navbarComponent === undefined ? "1rem" : "0"}}>
+  <Container
+    style={{ marginLeft: navbarComponent === undefined ? "1rem" : "0" }}
+  >
     <Header>
       {navbarComponent}
-      <span>San-Kanban</span>
+      <div>
+        {" "}
+        <span>San-Kanban </span>
+        <GiIcons.GiMountainCave />
+      </div>
     </Header>
+
     <ContentArea>{children}</ContentArea>
   </Container>
 );

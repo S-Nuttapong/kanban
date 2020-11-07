@@ -6,7 +6,6 @@ const navText = css`
   display: flex;
   justify-content: start;
   align-items: center;
-  padding: 0px 15px;
   list-style: none;
   height: 50px;
 
@@ -18,17 +17,16 @@ const navText = css`
     height: 85%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    border-radius: 4px;
+    padding: 0 30px;
 
     :hover {
-      background-color: lightblue;
+      background-color: #9ccaf74d;
     }
   }
 `;
 
 const NavMenuStyle = css`
-  background-color: #6440bb;
+  background-color: #124d86;
   max-width: 150px;
   height: 100vh;
   justify-content: start;
@@ -36,6 +34,7 @@ const NavMenuStyle = css`
   .nav-text {
     ${navText}
   }
+
 `;
 
 export const MenuBar = styled(Link)`
@@ -47,7 +46,9 @@ export const MenuBar = styled(Link)`
   }
 
   svg {
-    color: black !important;
+    color: #072e54 !important;
+    width: 1rem !important;
+    height: 1rem !important;
   }
 `;
 
@@ -82,7 +83,37 @@ export const NavBarMenuItem = styled.ul`
   width: 100%;
   padding: 0;
   margin: 0;
-  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+
+  svg:first-of-type {
+      display: flex;
+      margin: auto;
+      padding-top: 1.25rem;
+      width: 3rem;
+      height: 2rem;
+      align-self: center;
+      margin-bottom: 3rem;
+
+  }
+
+  li > a > svg {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 1rem !important;
+    height: 1 rem !important;
+  }
+
+  li + a {
+    position: absolute;
+    align-self: center;
+    top: 85%;
+  }
+
+  li + a > svg {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
 
   span {
     padding-left: 0.5rem;

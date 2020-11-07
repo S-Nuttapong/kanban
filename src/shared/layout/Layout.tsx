@@ -4,7 +4,7 @@ import { SidebarData } from "../interface";
 import { NavbarMobile, NavbarDesktop } from "../navbar/Navbar";
 import { ContentMobile, Content } from "../content/Content";
 import styled from "styled-components";
-import { useViewport } from "../useViewport";
+import { useViewport } from "../useWindow";
 
 const Main = styled.main`
   display: flex;

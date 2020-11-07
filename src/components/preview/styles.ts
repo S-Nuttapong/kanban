@@ -4,8 +4,7 @@ import { CustomDragProps } from "../../interface/ICustomPreview";
 export const CustomDragContainer = styled.div<CustomDragProps>`
   opacity: ${(props) => (props.isHidden ? `0` : `1`)};
   transform: ${(props) => (props.cardPreview ? `rotate(5deg)` : "none")};
-  background-color: ${(props) =>
-    props.boardPreview ? `#f3e9de !important` : `none`};
+
 `;
 
 export const CustomDragLayerContainer = styled.div`

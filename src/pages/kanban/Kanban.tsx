@@ -5,12 +5,12 @@ import { useAppState } from "../../provider/AppStateContext";
 import { CustomPreview } from "../../components/preview/CustomPreview";
 import styled from "styled-components";
 
-const KanbanContainer = styled.div`
+export const KanbanContainer = styled.div`
   width: 100vw;
   margin-top: 1rem;
   background-color: ;
   display: flex;
-  background-color: #3179ba;
+  background-color: #072e54;
   overflow-x: scroll;
   padding: 20px;
   align-items: flex-start;
