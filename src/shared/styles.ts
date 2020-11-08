@@ -27,7 +27,7 @@ const navText = css`
 
 const NavMenuStyle = css`
   background-color: #124d86;
-  max-width: 150px;
+  width: 150px;
   height: 100vh;
   justify-content: start;
 

@@ -1,38 +1,41 @@
+@media (max-width: 768px) {
+  .KanbanMotion {
+    width: 100% !important;
+  }
+}
+
 .KanbanMotion {
-  width: 100vw;
   height: inherit;
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: 20px;
+  padding-top: 20px;
+  margin-left: 20px;
   align-items: flex-start;
   z-index: 10;
-
 }
 
 .HomeMotion {
   display: flex;
-  width: 100%;
   padding-top: 9rem;
   flex-direction: column;
   z-index: 5;
 }
 
 .HomeMotion span {
-    font-size: 4rem;
-    font-weight: 700;
-    color: white;
-    align-self: center;
-    margin-bottom: 3.5rem;
-  }
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  align-self: center;
+  margin-bottom: 3.5rem;
+}
 
 .HomeMotion a {
   display: flex !important;
   position: unset !important;
   border: none !important;
   align-self: center !important;
-  padding: 0 !important; 
-
+  padding: 0 !important;
 }
 
 .HomeMotion a > button {
@@ -53,4 +56,3 @@
   color: #124d86;
   border: 5px solid #072e54;
 }
-

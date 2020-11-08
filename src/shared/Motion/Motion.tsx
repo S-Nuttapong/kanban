@@ -10,8 +10,27 @@ const pageTransition = {
   },
 };
 
-export const MotionWrapper = ({ children, className }: React.PropsWithChildren<{className: string}>) => (
-  <motion.div initial="out" animate="in" exit="out" variants={pageTransition} className={className}>
-    {children}
-  </motion.div>
-);
+interface MotionWrapperProps {
+  className: string;
+  width?: number;
+}
+
+export const MotionWrapper = ({
+  children,
+  className,
+  width,
+}: React.PropsWithChildren<MotionWrapperProps>) => {
+  console.log(width);
+  return (
+    <motion.div
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={pageTransition}
+      className={className}
+      style={{ width: width ? `${width}%` : `100%` }}
+    >
+      {children}
+    </motion.div>
+  );
+};

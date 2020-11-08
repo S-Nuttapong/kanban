@@ -5,12 +5,13 @@ import { useAppState } from "../../provider/AppStateContext";
 import { CustomPreview } from "../../components/preview/CustomPreview";
 import { MotionWrapper } from "../../shared/Motion/Motion";
 import "../../shared/Motion/Motion.css";
+import { useCalWidth } from "../../utils/useWindow";
 
 export const Kanban = () => {
   const { state, dispatch } = useAppState();
 
   return (
-    <MotionWrapper className="KanbanMotion">
+    <MotionWrapper className="KanbanMotion" width={useCalWidth(1680, 88, 180)}>
       <CustomPreview />
 
       {state.lists.map((list, i) => {
