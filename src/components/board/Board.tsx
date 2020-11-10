@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { BoardContainer, BoardTitle } from "./styles";
 import { BoardProps } from "../../interface/IBoard";
 import { Card } from "../card/Card";
-import { AddNewItem } from "../newitem/AddNewItem";
+import { AddNewItem, AddNewCard } from "../newitem/AddNewItem";
 import { useAppState } from "../../provider/AppStateContext";
 import { useDragItem, useDropBoard } from "../../utils/useDnD";
 import { isHidden } from "../../utils/isHidden";
@@ -30,7 +30,7 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
           index={i}
         />
       ))}
-      <AddNewItem
+      <AddNewCard
         addTask={true}
         onAdd={(text) =>
           dispatch({ type: "ADD_NEW_TASK", payload: { text, index } })

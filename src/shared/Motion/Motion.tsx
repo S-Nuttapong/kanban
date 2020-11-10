@@ -20,7 +20,6 @@ export const MotionWrapper = ({
   className,
   width,
 }: React.PropsWithChildren<MotionWrapperProps>) => {
-  console.log(width);
   return (
     <motion.div
       initial="out"

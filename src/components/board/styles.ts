@@ -10,6 +10,7 @@ export const BoardContainer = styled(CustomDragContainer)`
   padding: 8px 8px;
   flex-shrink: 0;
   z-index: 10;
+  
 `;
 
 export const BoardTitle = styled.div`
