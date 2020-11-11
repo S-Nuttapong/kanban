@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
-import * as GiIcons from "react-icons/gi"
+import * as GiIcons from "react-icons/gi";
+import { NavMenuMobile, NavMenuDesktop, NavBarMenuItem } from "../styles";
 import { IconContext } from "react-icons";
 import { SidebarData } from "../interface";
-import { NavMenuMobile, NavMenuDesktop, NavBarMenuItem } from "../styles";
 
 interface NavbarMobileProps extends SidebarData {
   sidebar: boolean;
@@ -13,7 +13,7 @@ interface NavbarMobileProps extends SidebarData {
 const MenuItem = ({ items }: SidebarData) => (
   <React.Fragment>
     <NavBarMenuItem>
-      <GiIcons.GiMountainCave/>
+      <GiIcons.GiMountainCave />
       {items.map((item, i) => (
         <li key={i} className={item.cName}>
           <Link to={item.path}>

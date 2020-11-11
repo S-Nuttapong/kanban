@@ -13,8 +13,9 @@ export const AppStateReducer = (state: AppState, action: Action) => {
        * add new task(card) to selected Board
        * @ param {number} index The index to access selected Board in List of Board
        */
-      const { text, index } = action.payload;
-      state.lists[index].tasks.push({ text: text, id: nanoid() });
+      const { formItem, index } = action.payload;
+      const [text, tags, priority] = Object.values(formItem)
+      state.lists[index].tasks.push({ text:text, tags:tags, priority:priority , id: nanoid() });
       return { ...state };
     }
     case "SET_DRAG_ITEM": {

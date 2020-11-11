@@ -42,6 +42,8 @@ export const CustomPreview = () => {
           cardPreview={true}
           index={item.index}
           boardIndex={item.boardIndex}
+          tags={item.tags}
+          priority={item.priority}
         />
       )}
     </CustomDragLayerContainer>

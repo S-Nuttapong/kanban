@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { items } from "../SidebarData";
+import { sidebarData as items  } from "../constant";
 import { SidebarData } from "../interface";
 import { NavbarMobile, NavbarDesktop } from "../navbar/Navbar";
 import { ContentMobile, Content } from "../content/Content";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AddNewItemButton } from "./styles";
-import { AddNewItemProps } from "../../interface/IAddNewItem";
+import { AddNewItemProps, FormItem } from "../../interface/IAddNewItem";
 import { CardItemForm, BoardItemForm } from "./NewItemForm";
 
 export const AddNewItem = ({
@@ -12,18 +12,17 @@ export const AddNewItem = ({
   const [showForm, setShowForm] = useState(initShowForm);
   return showForm ? (
     <BoardItemForm
-      onAdd={() => {
-        onAdd(text)
-        setShowForm(false);
+      onAdd={(inputText: string) => {
+        onAdd(inputText);
+        setShowForm(!showForm);
       }}
     />
   ) : (
-    <AddNewItemButton addTask={addTask} onClick={() => setShowForm(true)}>
+    <AddNewItemButton addTask={addTask} onClick={() => setShowForm(!showForm)}>
       {text}
     </AddNewItemButton>
   );
 };
-
 
 export const AddNewCard = ({
   addTask,
@@ -34,9 +33,9 @@ export const AddNewCard = ({
   const [showForm, setShowForm] = useState(initShowForm);
   return showForm ? (
     <CardItemForm
-      onAdd={(text) => {
-        onAdd(text);
-        setShowForm(false);
+      onAdd={(formItem: FormItem) => {
+        onAdd(formItem);
+        setShowForm(!showForm);
       }}
     />
   ) : (
@@ -44,4 +43,4 @@ export const AddNewCard = ({
       {text}
     </AddNewItemButton>
   );
-}
+};

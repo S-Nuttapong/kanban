@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NewItemFormContainer, NewItemButton } from "./styles";
 import {
-  NewItemFormContainer,
-  NewItemButton,
-  NewItemInput,
-  ItemFormContainer,
-} from "./styles";
-import { NewFormProps, Option } from "../../interface/IAddNewItem";
+  NewItemFormProps,
+  ItemFormProps,
+  FormItem,
+  Option,
+  SelectorProps,
+} from "../../interface/IAddNewItem";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
 import { TextField } from "@material-ui/core";
-import { useFocus } from "../../utils/useFocus";
 import {
   tagOptions,
   priorityOptions,
@@ -17,19 +17,36 @@ import {
   multiSelectStyles,
 } from "../../shared/constant";
 
-const SelectGroup = () => {
+
+const SelectGroup = ({ register, setValue }: SelectorProps) => {
   const [selectedTags, setSelectedTags] = useState<Option[]>([]);
   const [selectedPriority, setSelectedPriority] = useState<Option>({
     value: "",
     label: "",
   });
+
+  const handleChangeTags = (options: any) => {
+    setSelectedTags(options);
+    setValue("Tags", options);
+  };
+  const handleChangePriority = (option: any) => {
+    setSelectedPriority(option);
+    setValue("Priority", option);
+  };
+
+  useEffect(() => {
+    register({ name: "Tags" });
+    register({ name: "Priority" });
+  }, [register]);
+
   return (
     <React.Fragment>
       <div>
         <Select
+          name="Tags"
           value={selectedTags}
           placeholder="Tags"
-          onChange={(options: any) => setSelectedTags(options)}
+          onChange={handleChangeTags}
           options={tagOptions}
           styles={multiSelectStyles}
           isMulti
@@ -37,57 +54,67 @@ const SelectGroup = () => {
       </div>
       <div>
         <Select
+          name="Priority"
           placeholder="Priority"
           value={selectedPriority.value ? selectedPriority : null}
           options={priorityOptions}
           styles={singleSelectStyles}
-          onChange={(option: any) => setSelectedPriority(option)}
+          onChange={handleChangePriority}
         />
       </div>
     </React.Fragment>
   );
 };
 
-interface NewItemFormProps extends NewFormProps {
-  title: string;
-  isBoard?: boolean;
-}
+const NewItemForm = ({ onAdd, title, isBoard, children }: NewItemFormProps) => {
+  const { register, handleSubmit, errors, setValue } = useForm();
+  const onFormSubmit = (formItem: FormItem) => {
+    onAdd(formItem);
+  };
 
-const NewItemForm = ({
-  children,
-  onAdd,
-  title,
-  isBoard,
-}: React.PropsWithChildren<NewItemFormProps>) => {
   return (
-    <NewItemFormContainer isBoard={isBoard}>
+    <NewItemFormContainer
+      id={`${title}-addItemForm`}
+      onSubmit={handleSubmit(onFormSubmit)}
+      isBoard={isBoard}
+    >
       <TextField
+        name={title}
         id="outlined-basic"
         label={title}
         variant={isBoard ? ("filled" as any) : ("outlined" as any)}
         size="small"
         autoFocus={true}
+        inputRef={register({ required: true })}
+        error={errors[title] ? true : false}
+        autoComplete="off"
       />
-      {children}
-      <NewItemButton type="submit" onClick={() => onAdd("ass")}>
+      {children && children({ register, setValue })}
+      <NewItemButton form={`${title}-addItemForm`} type="submit">
         Create
       </NewItemButton>
     </NewItemFormContainer>
   );
 };
 
-export const CardItemForm = ({ onAdd }: NewFormProps) => {
+export const CardItemForm = ({ onAdd }: ItemFormProps) => {
   return (
-    <NewItemForm onAdd={() => onAdd("ass")} title="Task Title">
-      <SelectGroup />
+    <NewItemForm title="Task Title" onAdd={(formItem) => onAdd(formItem)}>
+      {({ register, setValue }: SelectorProps) => (
+        <SelectGroup register={register} setValue={setValue} />
+      )}
     </NewItemForm>
   );
 };
 
-export const BoardItemForm = ({ onAdd }: NewFormProps) => {
+export const BoardItemForm = ({ onAdd }: ItemFormProps) => {
   return (
-    <NewItemForm isBoard={true} title="Board Title" onAdd={() => onAdd("ass")}>
-      {""}
+    <NewItemForm
+      isBoard={true}
+      title="Board Title"
+      onAdd={(formItem) => onAdd(formItem)}
+    >
+      {({ register, setValue }: SelectorProps) => <React.Fragment />}
     </NewItemForm>
   );
 };

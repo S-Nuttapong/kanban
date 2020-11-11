@@ -1,9 +1,13 @@
 import { Dispatch } from "react";
 import { DragItem } from "./IDragItem";
+import { FormItem, Option } from "../interface/IAddNewItem";
+
 
 interface Task {
   id: string;
   text: string;
+  tags?: Option[];
+  priority?: Option;
 }
 
 export interface List extends Task {
@@ -25,7 +29,10 @@ export interface IAppStateReducer {
 
 export type Action =
   | { type: "ADD_NEW_BOARD"; payload: string }
-  | { type: "ADD_NEW_TASK"; payload: { text: string; index: number } }
+  | {
+      type: "ADD_NEW_TASK";
+      payload: { index: number; formItem: FormItem };
+    }
   | { type: "SET_DRAG_ITEM"; payload: DragItem | undefined }
   | { type: "MOVE_BOARD"; payload: { dragIndex: number; hoverIndex: number } }
   | {

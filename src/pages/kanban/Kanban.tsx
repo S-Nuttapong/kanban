@@ -7,6 +7,7 @@ import { MotionWrapper } from "../../shared/Motion/Motion";
 import "../../shared/Motion/Motion.css";
 import { useCalWidth } from "../../utils/useWindow";
 
+
 export const Kanban = () => {
   const { state, dispatch } = useAppState();
 
@@ -18,8 +19,8 @@ export const Kanban = () => {
         return <Board id={list.id} text={list.text} key={list.id} index={i} />;
       })}
       <AddNewItem
-        onAdd={(text) => dispatch({ type: "ADD_NEW_BOARD", payload: text })}
         text="+ Add New Board"
+        onAdd={(formItem) => dispatch({ type: "ADD_NEW_BOARD", payload: Object.values(formItem)[0] })}
       />
     </MotionWrapper>
   );
