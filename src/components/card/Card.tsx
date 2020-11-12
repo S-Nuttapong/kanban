@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
-import { CardContainer, BadgeContainer } from "./styles";
+import { CardContainer } from "./styles";
+import { BadgeContainer } from "../badge/styles";
 import { CardProps } from "../../interface/ICard";
 import { useDragItem, useDropCard } from "../../utils/useDnD";
 import { isHidden } from "../../utils/isHidden";
 import { useAppState } from "../../provider/AppStateContext";
 import { Badge, PriorityIcon } from "../badge/Badge";
+import { DeleteButton } from "../button/Button";
+import { Snackbars } from "../alert/Snackbar";
 
 export const Card = ({
   id,
@@ -15,7 +18,7 @@ export const Card = ({
   tags,
   priority,
 }: CardProps) => {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
   const cardRef = useRef<HTMLDivElement>(null);
   const drag = useDragItem({
     id,
@@ -60,15 +63,27 @@ export const Card = ({
       </BadgeContainer>
       <BadgeContainer>
         {priority ? (
-          <React.Fragment>
-            {" "}
-            <PriorityIcon text={priority.label} />
-            <Badge
-              color={priority.color}
-              text={priority.label}
-              classname={"priority"}
+          <div className="flex full-width space-between">
+            <div className="flex align-center">
+              {" "}
+              <PriorityIcon text={priority.label} />
+              <Badge
+                color={priority.color}
+                text={priority.label}
+                classname={"priority"}
+              />
+            </div>
+
+            <DeleteButton
+              message="Are you sure? Deleting a task cannot be undone."
+              onDelete={() =>
+                dispatch({
+                  type: "DELETE_CARD",
+                  payload: { boardIndex, cardIndex: index },
+                })
+              }
             />
-          </React.Fragment>
+          </div>
         ) : null}
       </BadgeContainer>
     </CardContainer>

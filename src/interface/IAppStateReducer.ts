@@ -1,9 +1,9 @@
 import { Dispatch } from "react";
 import { DragItem } from "./IDragItem";
 import { FormItem, Option } from "../interface/IAddNewItem";
+import { SnackBarProps } from "../interface/IAlert";
 
-
-interface Task {
+export interface Task {
   id: string;
   text: string;
   tags?: Option[];
@@ -17,6 +17,7 @@ export interface List extends Task {
 export interface AppState {
   lists: List[];
   dragItem?: DragItem;
+  alert?: Partial<Pick<SnackBarProps, "open" | "message">>;
 }
 
 export interface AppStoreProps {
@@ -33,6 +34,9 @@ export type Action =
       type: "ADD_NEW_TASK";
       payload: { index: number; formItem: FormItem };
     }
+  | { type: "DELETE_BOARD"; payload: number }
+  | { type: "DELETE_CARD"; payload: { cardIndex: number; boardIndex: number } }
+  | { type: "CLOSE_ALERT" }
   | { type: "SET_DRAG_ITEM"; payload: DragItem | undefined }
   | { type: "MOVE_BOARD"; payload: { dragIndex: number; hoverIndex: number } }
   | {

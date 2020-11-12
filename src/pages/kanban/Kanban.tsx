@@ -6,7 +6,7 @@ import { CustomPreview } from "../../components/preview/CustomPreview";
 import { MotionWrapper } from "../../shared/Motion/Motion";
 import "../../shared/Motion/Motion.css";
 import { useCalWidth } from "../../utils/useWindow";
-
+import { Snackbars } from "../../components/alert/Snackbar";
 
 export const Kanban = () => {
   const { state, dispatch } = useAppState();
@@ -20,8 +20,20 @@ export const Kanban = () => {
       })}
       <AddNewItem
         text="+ Add New Board"
-        onAdd={(formItem) => dispatch({ type: "ADD_NEW_BOARD", payload: Object.values(formItem)[0] })}
+        onAdd={(formItem) =>
+          dispatch({
+            type: "ADD_NEW_BOARD",
+            payload: Object.values(formItem)[0],
+          })
+        }
       />
+      {state.alert ? (
+        <Snackbars
+          open={state.alert.open}
+          setOpen={() => dispatch({type: "CLOSE_ALERT"})}
+          message={state.alert.message}
+        />
+      ) : null}
     </MotionWrapper>
   );
 };

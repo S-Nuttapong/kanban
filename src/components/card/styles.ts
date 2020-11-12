@@ -17,10 +17,3 @@ export const CardContainer = styled(CustomDragContainer)`
   padding: 1rem 1rem;
 `;
 
-export const BadgeContainer = styled.div`
-  margin-top: 0.5rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-`;

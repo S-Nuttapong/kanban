@@ -6,7 +6,9 @@ import { AddNewCard } from "../newitem/AddNewItem";
 import { useAppState } from "../../provider/AppStateContext";
 import { useDragItem, useDropBoard } from "../../utils/useDnD";
 import { isHidden } from "../../utils/isHidden";
-import { FormItem  } from "../../interface/IAddNewItem";
+import { FormItem } from "../../interface/IAddNewItem";
+import { DeleteButton } from "../button/Button";
+
 
 export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
   const { state, dispatch } = useAppState();
@@ -21,7 +23,13 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
       isHidden={isHidden(id, "BOARD", state.dragItem, boardPreview)}
       ref={boardRef}
     >
-      <BoardTitle>{text}</BoardTitle>
+      <div className="flex align-center space-between">
+        <BoardTitle>{text}</BoardTitle>
+        <DeleteButton
+          onDelete={() => dispatch({ type: "DELETE_BOARD", payload: index })}
+          message="Are you sure? Deleting the column will also delete related tasks and this cannot be undone."
+        />
+      </div>
       {state.lists[index].tasks.map((task, i) => (
         <Card
           boardIndex={index}
@@ -36,9 +44,9 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
       <AddNewCard
         addTask={true}
         text="+ Add New Task"
-        onAdd={(formItem: FormItem) =>
-          dispatch({ type: "ADD_NEW_TASK", payload: { index, formItem } })
-        }
+        onAdd={(formItem: FormItem) => {
+          dispatch({ type: "ADD_NEW_TASK", payload: { index, formItem } });
+        }}
       />
     </BoardContainer>
   );

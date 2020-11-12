@@ -17,13 +17,11 @@ import {
   multiSelectStyles,
 } from "../../shared/constant";
 
-
 const SelectGroup = ({ register, setValue }: SelectorProps) => {
   const [selectedTags, setSelectedTags] = useState<Option[]>([]);
-  const [selectedPriority, setSelectedPriority] = useState<Option>({
-    value: "",
-    label: "",
-  });
+  const [selectedPriority, setSelectedPriority] = useState<Option>(
+    priorityOptions[1]
+  );
 
   const handleChangeTags = (options: any) => {
     setSelectedTags(options);
@@ -67,7 +65,7 @@ const SelectGroup = ({ register, setValue }: SelectorProps) => {
 };
 
 const NewItemForm = ({ onAdd, title, isBoard, children }: NewItemFormProps) => {
-  const { register, handleSubmit, errors, setValue } = useForm();
+  const { register, handleSubmit, errors, setValue, reset } = useForm();
   const onFormSubmit = (formItem: FormItem) => {
     onAdd(formItem);
   };

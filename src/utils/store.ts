@@ -8,12 +8,6 @@ export const store = (): AppState => ({
       text: "To Do",
       tasks: [
         {
-          id: "4",
-          text: "Window 95 Portfolio",
-          tags: [tagOptions[1]],
-          priority: priorityOptions[1],
-        },
-        {
           id: "5",
           text: "Nampha Payai with Aoey",
           tags: [tagOptions[0], tagOptions[3]],
@@ -21,9 +15,9 @@ export const store = (): AppState => ({
         },
         {
           id: "6",
-          text: "Takhaek Climbing",
-          tags: [tagOptions[0], tagOptions[2]],
-          priority: priorityOptions[2],
+          text: "Christmas with Aoey",
+          tags: [tagOptions[2], tagOptions[3]],
+          priority: priorityOptions[1],
         },
       ],
     },
@@ -33,14 +27,14 @@ export const store = (): AppState => ({
       tasks: [
         {
           id: "7",
-          text: "Vue TypeScript todo project",
+          text: "Vue: Highly testable TypeScript todo app",
           tags: [tagOptions[1]],
           priority: priorityOptions[0],
         },
         {
-          id: "8",
-          text: "Shark Baited V8",
-          tags: [tagOptions[0]],
+          id: "4",
+          text: "React: Window 95 Portfolio",
+          tags: [tagOptions[1]],
           priority: priorityOptions[1],
         },
       ],
@@ -51,9 +45,21 @@ export const store = (): AppState => ({
       tasks: [
         {
           id: "9",
-          text: "San KanBan Project",
+          text: "React: San-KanBan Project",
           tags: [tagOptions[1]],
           priority: priorityOptions[0],
+        },
+      ],
+    },
+    {
+      id: "3",
+      text: "Future Plan",
+      tasks: [
+        {
+          id: "6",
+          text: "Climbing in Thakaek",
+          tags: [tagOptions[0], tagOptions[2]],
+          priority: priorityOptions[2],
         },
       ],
     },
