@@ -16,6 +16,7 @@ export const AddNewItem = ({
         onAdd(inputText);
         setShowForm(!showForm);
       }}
+      onCancel={() => setShowForm(!showForm)}
     />
   ) : (
     <AddNewItemButton addTask={addTask} onClick={() => setShowForm(!showForm)}>
@@ -37,6 +38,7 @@ export const AddNewCard = ({
         onAdd(formItem);
         setShowForm(!showForm);
       }}
+      onCancel={() => setShowForm(!showForm)}
     />
   ) : (
     <AddNewItemButton addTask={addTask} onClick={() => setShowForm(true)}>

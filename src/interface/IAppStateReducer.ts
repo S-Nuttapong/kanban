@@ -17,7 +17,7 @@ export interface List extends Task {
 export interface AppState {
   lists: List[];
   dragItem?: DragItem;
-  alert?: Partial<Pick<SnackBarProps, "open" | "message">>;
+  alert?: Partial<Omit<SnackBarProps, "setOpen">>;
 }
 
 export interface AppStoreProps {

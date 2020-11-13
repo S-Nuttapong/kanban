@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelect } from "../../utils/useSelect";
 import { NewItemFormContainer, NewItemButton } from "./styles";
 import {
   NewItemFormProps,
   ItemFormProps,
   FormItem,
-  Option,
   SelectorProps,
 } from "../../interface/IAddNewItem";
 import Select from "react-select";
@@ -16,27 +16,13 @@ import {
   singleSelectStyles,
   multiSelectStyles,
 } from "../../shared/constant";
+import { CancelButton } from "../button/Button";
 
-const SelectGroup = ({ register, setValue }: SelectorProps) => {
-  const [selectedTags, setSelectedTags] = useState<Option[]>([]);
-  const [selectedPriority, setSelectedPriority] = useState<Option>(
-    priorityOptions[1]
-  );
-
-  const handleChangeTags = (options: any) => {
-    setSelectedTags(options);
-    setValue("Tags", options);
-  };
-  const handleChangePriority = (option: any) => {
-    setSelectedPriority(option);
-    setValue("Priority", option);
-  };
-
-  useEffect(() => {
-    register({ name: "Tags" });
-    register({ name: "Priority" });
-  }, [register]);
-
+const SelectGroup = ({
+  handleChangeTags,
+  handleChangePriority,
+  selectedTags,
+}: SelectorProps) => {
   return (
     <React.Fragment>
       <div>
@@ -53,8 +39,7 @@ const SelectGroup = ({ register, setValue }: SelectorProps) => {
       <div>
         <Select
           name="Priority"
-          placeholder="Priority"
-          value={selectedPriority.value ? selectedPriority : null}
+          defaultValue={priorityOptions[1]}
           options={priorityOptions}
           styles={singleSelectStyles}
           onChange={handleChangePriority}
@@ -64,55 +49,100 @@ const SelectGroup = ({ register, setValue }: SelectorProps) => {
   );
 };
 
-const NewItemForm = ({ onAdd, title, isBoard, children }: NewItemFormProps) => {
+const NewItemForm = ({
+  onAdd,
+  onCancel,
+  title,
+  isBoard,
+  children,
+}: NewItemFormProps) => {
   const { register, handleSubmit, errors, setValue, reset } = useForm();
   const onFormSubmit = (formItem: FormItem) => {
     onAdd(formItem);
   };
+  const {
+    handleChangeTags,
+    handleChangePriority,
+    selectedTags,
+    defaultTags,
+  } = useSelect({
+    register,
+    setValue,
+  });
 
   return (
-    <NewItemFormContainer
-      id={`${title}-addItemForm`}
-      onSubmit={handleSubmit(onFormSubmit)}
-      isBoard={isBoard}
-    >
-      <TextField
-        name={title}
-        id="outlined-basic"
-        label={title}
-        variant={isBoard ? ("filled" as any) : ("outlined" as any)}
-        size="small"
-        autoFocus={true}
-        inputRef={register({ required: true })}
-        error={errors[title] ? true : false}
-        autoComplete="off"
-      />
-      {children && children({ register, setValue })}
-      <NewItemButton form={`${title}-addItemForm`} type="submit">
-        Create
-      </NewItemButton>
-    </NewItemFormContainer>
+    <React.Fragment>
+      <NewItemFormContainer
+        id={`${title}-addItemForm`}
+        onSubmit={handleSubmit(onFormSubmit)}
+        isBoard={isBoard}
+      >
+        <TextField
+          name={title}
+          id="outlined-basic"
+          label={title}
+          variant={isBoard ? ("filled" as any) : ("outlined" as any)}
+          size="small"
+          autoFocus={true}
+          inputRef={register({ required: true })}
+          error={errors[title] ? true : false}
+          autoComplete="off"
+        />
+        {children &&
+          children({
+            handleChangeTags,
+            handleChangePriority,
+            selectedTags,
+          })}
+
+        <div className="flex bg-none mt-2 mb-0">
+          <NewItemButton form={`${title}-addItemForm`} type="submit">
+            Create
+          </NewItemButton>
+          <CancelButton
+            action={() => {
+              handleChangeTags(defaultTags);
+              reset({ title: "" });
+              onCancel();
+            }}
+          />
+        </div>
+      </NewItemFormContainer>
+    </React.Fragment>
   );
 };
 
-export const CardItemForm = ({ onAdd }: ItemFormProps) => {
+export const CardItemForm = ({ onAdd, onCancel }: ItemFormProps) => {
   return (
-    <NewItemForm title="Task Title" onAdd={(formItem) => onAdd(formItem)}>
-      {({ register, setValue }: SelectorProps) => (
-        <SelectGroup register={register} setValue={setValue} />
+    <NewItemForm
+      title="Task Title"
+      onAdd={(formItem) => onAdd(formItem)}
+      onCancel={() => onCancel()}
+    >
+      {({
+        handleChangeTags,
+        handleChangePriority,
+        selectedTags,
+      }: SelectorProps) => (
+        <SelectGroup
+          handleChangeTags={handleChangeTags}
+          handleChangePriority={handleChangePriority}
+          selectedTags={selectedTags}
+        />
       )}
     </NewItemForm>
   );
 };
 
-export const BoardItemForm = ({ onAdd }: ItemFormProps) => {
+export const BoardItemForm = ({ onAdd, onCancel }: ItemFormProps) => {
   return (
     <NewItemForm
       isBoard={true}
       title="Board Title"
       onAdd={(formItem) => onAdd(formItem)}
+      onCancel={() => onCancel()}
     >
-      {({ register, setValue }: SelectorProps) => <React.Fragment />}
+      {() => <React.Fragment />}
     </NewItemForm>
   );
 };

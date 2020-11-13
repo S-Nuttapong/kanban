@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 export const CustomDialog = ({
   open,
   handleClose,
-  onDelete,
+  action,
   message,
 }: DialogProps) => (
   <Dialog
@@ -31,7 +31,7 @@ export const CustomDialog = ({
       </Button>
       <Button
         onClick={() => {
-          onDelete();
+          action();
           handleClose();
         }}
         color="primary"

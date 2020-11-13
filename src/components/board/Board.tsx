@@ -26,7 +26,7 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
       <div className="flex align-center space-between">
         <BoardTitle>{text}</BoardTitle>
         <DeleteButton
-          onDelete={() => dispatch({ type: "DELETE_BOARD", payload: index })}
+          action={() => dispatch({ type: "DELETE_BOARD", payload: index })}
           message="Are you sure? Deleting the column will also delete related tasks and this cannot be undone."
         />
       </div>

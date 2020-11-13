@@ -1,7 +1,7 @@
 export interface DialogProps {
     open: boolean;
     handleClose: () => void;
-    onDelete: () => void;
+    action: () => void;
     message: string;
   }
   

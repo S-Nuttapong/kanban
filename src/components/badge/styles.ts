@@ -33,19 +33,4 @@ export const BadgeContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  .flex {
-    display: flex;
-  }
-
-  .align-center {
-    align-items: center;
-  }
-
-  .space-between {
-    justify-content: space-between;
-  }
-
-  .full-width {
-    width: 100%;
-  }
 `;

@@ -11,21 +11,7 @@ export const BoardContainer = styled(CustomDragContainer)`
   flex-shrink: 0;
   z-index: 10;
   
-  .flex {
-    display: flex;
-  }
 
-  .align-center {
-    align-items: center;
-  }
-
-  .space-between {
-    justify-content: space-between;
-  }
-
-  .full-width {
-    width: 100%;
-  }
 `;
 
 export const BoardTitle = styled.div`

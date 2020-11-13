@@ -8,13 +8,13 @@ export const store = (): AppState => ({
       text: "To Do",
       tasks: [
         {
-          id: "5",
+          id: "4",
           text: "Nampha Payai with Aoey",
           tags: [tagOptions[0], tagOptions[3]],
           priority: priorityOptions[0],
         },
         {
-          id: "6",
+          id: "5",
           text: "Christmas with Aoey",
           tags: [tagOptions[2], tagOptions[3]],
           priority: priorityOptions[1],
@@ -26,13 +26,13 @@ export const store = (): AppState => ({
       text: "Doing",
       tasks: [
         {
-          id: "7",
+          id: "6",
           text: "Vue: Highly testable TypeScript todo app",
           tags: [tagOptions[1]],
           priority: priorityOptions[0],
         },
         {
-          id: "4",
+          id: "7",
           text: "React: Window 95 Portfolio",
           tags: [tagOptions[1]],
           priority: priorityOptions[1],
@@ -44,7 +44,7 @@ export const store = (): AppState => ({
       text: "Done",
       tasks: [
         {
-          id: "9",
+          id: "8",
           text: "React: San-KanBan Project",
           tags: [tagOptions[1]],
           priority: priorityOptions[0],
@@ -56,7 +56,7 @@ export const store = (): AppState => ({
       text: "Future Plan",
       tasks: [
         {
-          id: "6",
+          id: "9",
           text: "Climbing in Thakaek",
           tags: [tagOptions[0], tagOptions[2]],
           priority: priorityOptions[2],

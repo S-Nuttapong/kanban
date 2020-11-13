@@ -7,7 +7,7 @@ import { isHidden } from "../../utils/isHidden";
 import { useAppState } from "../../provider/AppStateContext";
 import { Badge, PriorityIcon } from "../badge/Badge";
 import { DeleteButton } from "../button/Button";
-import { Snackbars } from "../alert/Snackbar";
+
 
 export const Card = ({
   id,
@@ -63,7 +63,7 @@ export const Card = ({
       </BadgeContainer>
       <BadgeContainer>
         {priority ? (
-          <div className="flex full-width space-between">
+          <div className="flex space-between width-100">
             <div className="flex align-center">
               {" "}
               <PriorityIcon text={priority.label} />
@@ -76,7 +76,7 @@ export const Card = ({
 
             <DeleteButton
               message="Are you sure? Deleting a task cannot be undone."
-              onDelete={() =>
+              action={() =>
                 dispatch({
                   type: "DELETE_CARD",
                   payload: { boardIndex, cardIndex: index },

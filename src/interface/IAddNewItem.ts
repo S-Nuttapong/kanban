@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, Dispatch, SetStateAction } from "react";
 import { UseFormMethods } from "react-hook-form";
 
 export interface AddNewItemButtonProps {
@@ -7,6 +7,7 @@ export interface AddNewItemButtonProps {
 
 export interface ItemFormProps {
   onAdd(formItem: FormItem | string): void;
+  onCancel(): void;
 }
 
 export interface Option {
@@ -21,16 +22,27 @@ export interface FormItem {
   priority?: Option;
 }
 
-export interface SelectorProps
+export interface UseFormProps
   extends Pick<UseFormMethods, "register" | "setValue"> {}
+export interface SelectorProps {
+  handleChangeTags(options: any): void;
+  handleChangePriority(options: any): void;
+  selectedTags: Option[];
+  setSelectedTags?: Dispatch<SetStateAction<Option[]>>;
+}
 
 export interface NewItemFormProps extends ItemFormProps {
   isBoard?: boolean;
   title: string;
-  children({ register, setValue }: SelectorProps): ReactElement;
+  children({
+    handleChangeTags,
+    handleChangePriority,
+    selectedTags,
+    setSelectedTags,
+  }: SelectorProps): ReactElement;
 }
 
-export interface AddNewItemProps extends ItemFormProps {
+export interface AddNewItemProps extends Pick<ItemFormProps, "onAdd"> {
   addTask?: boolean;
   text: string;
   initShowForm?: boolean;

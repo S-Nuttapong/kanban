@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { AddNewItemButtonProps } from "../../interface/IAddNewItem";
 import { CardBaseStyle } from "../card/styles";
+import { Button } from "../button/styles";
 
 export const AddNewItemButton = styled.div<AddNewItemButtonProps>`
   color: ${(props) => (props.addTask ? "#000000" : "#ffffff")};
@@ -34,14 +35,14 @@ export const NewItemFormContainer = styled.form<{ isBoard?: boolean }>`
       width: 100%;
       padding: 0;
 
-      div, input, .MuiInputBase-input:focus, .MuiInputBase-input:hover {
+      div,
+      input,
+      .MuiInputBase-input:focus,
+      .MuiInputBase-input:hover {
         background-color: #fff;
         border-radius: 3px;
       }
-
-      button {
-        margin-top: .5rem; 
-      }
+      
     `}
 
   > * {
@@ -56,18 +57,6 @@ export const NewItemFormContainer = styled.form<{ isBoard?: boolean }>`
     max-width: 300px;
     width: 100%;
   }
-
-
-`;
-
-export const NewItemButton = styled.button`
-  background-color: #5aac44;
-  border-radius: 3px;
-  border: none;
-  box-shadow: none;
-  color: #fff;
-  padding: 6px 12px;
-  text-align: center;
 `;
 
 export const ItemFormContainer = styled.div`
@@ -96,4 +85,8 @@ export const NewItemInput = styled.input`
   :focus {
     outline-color: #3f51b5;
   }
+`;
+
+export const NewItemButton = styled(Button)`
+  background-color: #5aac44;
 `;
