@@ -1,48 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, ReactElement, Dispatch, SetStateAction } from "react";
 import { AddNewItemButton } from "./styles";
-import { AddNewItemProps, FormItem } from "../../interface/IAddNewItem";
+import { AddItemProps, FormItem } from "../../interface/IAddNewItem";
 import { CardItemForm, BoardItemForm } from "./NewItemForm";
 
-export const AddNewItem = ({
-  addTask,
-  text,
-  onAdd,
-  initShowForm = false,
-}: AddNewItemProps) => {
-  const [showForm, setShowForm] = useState(initShowForm);
-  return showForm ? (
-    <BoardItemForm
-      onAdd={(inputText: string) => {
-        onAdd(inputText);
-        setShowForm(!showForm);
-      }}
-      onCancel={() => setShowForm(!showForm)}
-    />
-  ) : (
-    <AddNewItemButton addTask={addTask} onClick={() => setShowForm(!showForm)}>
-      {text}
-    </AddNewItemButton>
-  );
-};
+interface AddNewItemProps extends Omit<AddItemProps, "onAdd"> {
+  children(setShowForm: Dispatch<SetStateAction<boolean>>): ReactElement;
+}
 
-export const AddNewCard = ({
+const AddNewItem = ({
   addTask,
   text,
-  onAdd,
+  children,
   initShowForm = false,
 }: AddNewItemProps) => {
   const [showForm, setShowForm] = useState(initShowForm);
+
   return showForm ? (
-    <CardItemForm
-      onAdd={(formItem: FormItem) => {
-        onAdd(formItem);
-        setShowForm(!showForm);
-      }}
-      onCancel={() => setShowForm(!showForm)}
-    />
+    <React.Fragment>{children && children(setShowForm)}</React.Fragment>
   ) : (
     <AddNewItemButton addTask={addTask} onClick={() => setShowForm(true)}>
       {text}
     </AddNewItemButton>
   );
 };
+
+export const AddNewBoard = ({
+  addTask,
+  text,
+  onAdd,
+}: AddItemProps) => (
+  <AddNewItem addTask={addTask} text={text}>
+    {(setShowForm) => (
+      <BoardItemForm
+        onAdd={(inputText: string) => {
+          onAdd(inputText);
+          setShowForm(false);
+        }}
+        onCancel={() => setShowForm(false)}
+      />
+    )}
+  </AddNewItem>
+);
+
+export const AddNewCard = ({
+  addTask,
+  text,
+  onAdd,
+}: AddItemProps) => (
+  <AddNewItem addTask={addTask} text={text}>
+    {(setShowForm) => (
+       <CardItemForm
+       onAdd={(formItem: FormItem) => {
+         onAdd(formItem);
+         setShowForm(false);
+       }}
+       onCancel={() => setShowForm(false)}
+       />
+    )}
+  </AddNewItem>
+)

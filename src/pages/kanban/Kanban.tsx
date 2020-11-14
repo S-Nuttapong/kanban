@@ -1,6 +1,6 @@
 import React from "react";
 import { Board } from "../../components/board/Board";
-import { AddNewItem } from "../../components/newitem/AddNewItem";
+import { AddNewBoard } from "../../components/newitem/AddNewItem";
 import { useAppState } from "../../provider/AppStateContext";
 import { CustomPreview } from "../../components/preview/CustomPreview";
 import { MotionWrapper } from "../../shared/Motion/Motion";
@@ -18,7 +18,7 @@ export const Kanban = () => {
       {state.lists.map((list, i) => {
         return <Board id={list.id} text={list.text} key={list.id} index={i} />;
       })}
-      <AddNewItem
+      <AddNewBoard
         text="+ Add New Board"
         onAdd={(formItem) =>
           dispatch({

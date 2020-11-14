@@ -42,7 +42,7 @@ export interface NewItemFormProps extends ItemFormProps {
   }: SelectorProps): ReactElement;
 }
 
-export interface AddNewItemProps extends Pick<ItemFormProps, "onAdd"> {
+export interface AddItemProps extends Pick<ItemFormProps, "onAdd"> {
   addTask?: boolean;
   text: string;
   initShowForm?: boolean;

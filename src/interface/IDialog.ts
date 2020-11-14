@@ -2,6 +2,6 @@ export interface DialogProps {
     open: boolean;
     handleClose: () => void;
     action: () => void;
-    message: string;
+    message?: string;
   }
   
