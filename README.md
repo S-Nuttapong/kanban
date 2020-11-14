@@ -1,2 +1,2 @@
-# Travello
-Trello-like Kanban board
+# San-Kanban
+Kanban board
