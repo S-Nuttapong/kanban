@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2060273bd555ef7f5a261dbb5d3aba27",
+    "revision": "4b92d35ec21de504fed0137c60998572",
     "url": "/kanban/index.html"
   },
   {
-    "revision": "79c159366843eff740f2",
+    "revision": "b0062f7eb1578ada485b",
     "url": "/kanban/static/css/main.05d87e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kanban/static/js/2.f693e254.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "79c159366843eff740f2",
-    "url": "/kanban/static/js/main.4a6446ac.chunk.js"
+    "revision": "b0062f7eb1578ada485b",
+    "url": "/kanban/static/js/main.0e404dcd.chunk.js"
   },
   {
     "revision": "cc32e42deb13310fb084",
