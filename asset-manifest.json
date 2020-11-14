@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/San-Kanban/static/css/main.05d87e03.chunk.css",
+    "main.js": "/San-Kanban/static/js/main.13bbdfbd.chunk.js",
+    "main.js.map": "/San-Kanban/static/js/main.13bbdfbd.chunk.js.map",
+    "runtime-main.js": "/San-Kanban/static/js/runtime-main.97dbe5c8.js",
+    "runtime-main.js.map": "/San-Kanban/static/js/runtime-main.97dbe5c8.js.map",
+    "static/js/2.8206026e.chunk.js": "/San-Kanban/static/js/2.8206026e.chunk.js",
+    "static/js/2.8206026e.chunk.js.map": "/San-Kanban/static/js/2.8206026e.chunk.js.map",
+    "index.html": "/San-Kanban/index.html",
+    "precache-manifest.d4dc72533de96e09b64b574b90a3d889.js": "/San-Kanban/precache-manifest.d4dc72533de96e09b64b574b90a3d889.js",
+    "service-worker.js": "/San-Kanban/service-worker.js",
+    "static/css/main.05d87e03.chunk.css.map": "/San-Kanban/static/css/main.05d87e03.chunk.css.map",
+    "static/js/2.8206026e.chunk.js.LICENSE.txt": "/San-Kanban/static/js/2.8206026e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.97dbe5c8.js",
+    "static/js/2.8206026e.chunk.js",
+    "static/css/main.05d87e03.chunk.css",
+    "static/js/main.13bbdfbd.chunk.js"
+  ]
+}
