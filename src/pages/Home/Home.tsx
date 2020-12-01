@@ -5,7 +5,7 @@ import "../../shared/Motion/Motion.css";
 
 export const Home = () => (
   <MotionWrapper className="HomeMotion">
-    <span>San-Kanban</span>
+    <span data-testid="Home">San-Kanban</span>
     <Link to="/kanban">
       <button>View Boards</button>
     </Link>
