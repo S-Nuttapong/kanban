@@ -11,14 +11,19 @@ export const BoardContainer = styled(CustomDragContainer)`
   padding: 8px 8px;
   flex-shrink: 0;
   z-index: 10;
-  overflow-y: scroll;
 
+  .card-section {
+    overflow-y: scroll;
+    max-height: 75vh;
+
+    @media (max-width: 768px) {
+      max-height: 70vh;
+    }
+  }
 `;
 
 export const BoardTitle = styled.div`
   padding: 16px 12px;
   font-weight: bold;
   line-break: anywhere;
-
 `;
-

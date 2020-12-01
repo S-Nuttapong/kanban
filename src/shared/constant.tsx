@@ -5,20 +5,6 @@ import React from "react";
 import * as ImIcons from "react-icons/im";
 import * as BsIcons from "react-icons/bs";
 
-const BaseControl: StylesConfig = {
-  control: (styles, { isFocused }) => ({
-    ...styles,
-    backgroundColor: "white",
-    boxShadow: isFocused ? "0 0 0 1px #3f51b5" : "none",
-    border: isFocused ? "1px solid #3f51b5" : "1px solide #cccccc",
-
-    ":hover": {
-      boxShadow: isFocused ? "0 0 0 1px #3f51b5" : "none",
-      border: isFocused ? "1px solid #3f51b5" : "1px solid black",
-    },
-  }),
-};
-
 export const sidebarData = [
   {
     title: "Home",
@@ -61,6 +47,24 @@ const dot = (color = "#ccc") => ({
     width: 10,
   },
 });
+
+const BaseControl: StylesConfig = {
+  control: (styles, { isFocused }) => ({
+    ...styles,
+    backgroundColor: "white",
+    boxShadow: isFocused ? "0 0 0 1px #3f51b5" : "none",
+    border: isFocused ? "1px solid #3f51b5" : "1px solide #cccccc",
+
+    ":hover": {
+      boxShadow: isFocused ? "0 0 0 1px #3f51b5" : "none",
+      border: isFocused ? "1px solid #3f51b5" : "1px solid black",
+    },
+  }),
+  menu: (styles) => ({
+    ...styles,
+    overflowY: "scroll",
+  }),
+};
 
 export const singleSelectStyles: StylesConfig = {
   ...BaseControl,

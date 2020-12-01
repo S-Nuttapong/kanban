@@ -1,17 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { BoardContainer, BoardTitle } from "./styles";
 import { BoardProps } from "../../interface/IBoard";
 import { Card } from "../card/Card";
-import { AddNewCard } from "../newitem/AddNewItem";
+
 import { useAppState } from "../../provider/AppStateContext";
 import { useDragItem, useDropBoard } from "../../utils/useDnD";
 import { isHidden } from "../../utils/isHidden";
 import { FormItem } from "../../interface/IAddNewItem";
 import { DeleteButton } from "../button/Button";
-
+import { AddNewItemButton } from "../newitem/styles";
+import {} from "../../interface/IAddNewItem";
+import { CardItemForm } from "../newitem/NewItemForm";
 
 export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
   const { state, dispatch } = useAppState();
+  const [showForm, setShowForm] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
   const drag = useDragItem({ id, text, index, type: "BOARD" });
   const drop = useDropBoard({ id, text, index, type: "BOARD" });
@@ -30,24 +33,30 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
           message="Are you sure? Deleting the column will also delete related tasks and this cannot be undone."
         />
       </div>
-      {state.lists[index].tasks.map((task, i) => (
-        <Card
-          boardIndex={index}
-          text={task.text}
-          key={task.id}
-          id={task.id}
-          index={i}
-          tags={task.tags}
-          priority={task.priority}
+      <div className="card-section">
+        {state.lists[index].tasks.map((task, i) => (
+          <Card
+            boardIndex={index}
+            text={task.text}
+            key={task.id}
+            id={task.id}
+            index={i}
+            tags={task.tags}
+            priority={task.priority}
+          />
+        ))}
+        <CardItemForm
+          onAdd={(formItem: FormItem) => {
+            dispatch({ type: "ADD_NEW_TASK", payload: { index, formItem } });
+            setShowForm(false);
+          }}
+          onCancel={() => setShowForm(false)}
+          showForm={showForm}
         />
-      ))}
-      <AddNewCard
-        addTask={true}
-        text="+ Add New Task"
-        onAdd={(formItem: FormItem) => {
-          dispatch({ type: "ADD_NEW_TASK", payload: { index, formItem } });
-        }}
-      />
+      </div>
+      <AddNewItemButton addTask={true} onClick={() => setShowForm(true)}>
+        + Add New Task
+      </AddNewItemButton>
     </BoardContainer>
   );
 };

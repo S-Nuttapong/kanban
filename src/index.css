@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+.vh-60 {
+  max-height: 80vh;
+}
+
+.scroll-y {
+  overflow-y: scroll;
+}
+
 .flex {
   display: flex;
 }

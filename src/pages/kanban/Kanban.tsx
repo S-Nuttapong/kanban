@@ -19,7 +19,6 @@ export const Kanban = () => {
         return <Board id={list.id} text={list.text} key={list.id} index={i} />;
       })}
       <AddNewBoard
-        text="+ Add New Board"
         onAdd={(formItem) =>
           dispatch({
             type: "ADD_NEW_BOARD",
@@ -30,7 +29,7 @@ export const Kanban = () => {
       {state.alert ? (
         <Snackbars
           open={state.alert.open}
-          setOpen={() => dispatch({type: "CLOSE_ALERT"})}
+          setOpen={() => dispatch({ type: "CLOSE_ALERT" })}
           message={state.alert.message}
         />
       ) : null}

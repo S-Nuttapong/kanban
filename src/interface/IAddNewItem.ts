@@ -10,6 +10,10 @@ export interface ItemFormProps {
   onCancel(): void;
 }
 
+export interface CardItemFormProps extends ItemFormProps {
+  showForm: boolean;
+}
+
 export interface Option {
   value: string;
   label: string;
@@ -40,10 +44,4 @@ export interface NewItemFormProps extends ItemFormProps {
     selectedTags,
     setSelectedTags,
   }: SelectorProps): ReactElement;
-}
-
-export interface AddItemProps extends Pick<ItemFormProps, "onAdd"> {
-  addTask?: boolean;
-  text: string;
-  initShowForm?: boolean;
 }

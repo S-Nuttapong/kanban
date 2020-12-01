@@ -4,6 +4,7 @@ import { NewItemFormContainer, NewItemButton } from "./styles";
 import {
   NewItemFormProps,
   ItemFormProps,
+  CardItemFormProps,
   FormItem,
   SelectorProps,
 } from "../../interface/IAddNewItem";
@@ -43,6 +44,7 @@ const SelectGroup = ({
           options={priorityOptions}
           styles={singleSelectStyles}
           onChange={handleChangePriority}
+          autoFocus={true}
         />
       </div>
     </React.Fragment>
@@ -112,8 +114,12 @@ const NewItemForm = ({
   );
 };
 
-export const CardItemForm = ({ onAdd, onCancel }: ItemFormProps) => {
-  return (
+export const CardItemForm = ({
+  showForm,
+  onAdd,
+  onCancel,
+}: CardItemFormProps) => {
+  return showForm ? (
     <NewItemForm
       title="Task Title"
       onAdd={(formItem) => onAdd(formItem)}
@@ -131,7 +137,7 @@ export const CardItemForm = ({ onAdd, onCancel }: ItemFormProps) => {
         />
       )}
     </NewItemForm>
-  );
+  ) : null;
 };
 
 export const BoardItemForm = ({ onAdd, onCancel }: ItemFormProps) => {
