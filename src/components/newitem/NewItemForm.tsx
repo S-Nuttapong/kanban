@@ -34,6 +34,8 @@ const SelectGroup = ({
           onChange={handleChangeTags}
           options={tagOptions}
           styles={multiSelectStyles}
+          menuPosition={"fixed"}
+          menuPlacement={"auto"}
           isMulti
         />
       </div>
@@ -44,6 +46,8 @@ const SelectGroup = ({
           options={priorityOptions}
           styles={singleSelectStyles}
           onChange={handleChangePriority}
+          menuPosition={"fixed"}
+          menuPlacement={"auto"}
           autoFocus={true}
         />
       </div>
