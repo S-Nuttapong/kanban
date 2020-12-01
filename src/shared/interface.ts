@@ -9,6 +9,8 @@ interface List {
 
 export interface SidebarData {
   items: List[];
+  mockOnToggle?: () => void;
+  mockSidebar?: boolean;
 }
 
 export interface SidebarProps {

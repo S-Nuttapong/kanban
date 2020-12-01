@@ -3,16 +3,15 @@ import { Layout } from "./Layout";
 import { renderWithRouter } from "../../testHelper";
 import { fireEvent } from "@testing-library/react";
 
-
 describe("Layout", () => {
   describe("on screen width > 768px", () => {
     it("renders desktop layout", () => {
       const { queryByTestId } = renderWithRouter(() => <Layout />);
       expect(queryByTestId("layout-desktop")).toBeTruthy();
-    expect(queryByTestId("layout-mobile")).toBeFalsy();
+      expect(queryByTestId("layout-mobile")).toBeFalsy();
     });
 
-    it("redirects to '/' on 'Home-link' click ", () => {
+    it("directs to '/' on 'Home-link' click ", () => {
       const { history, queryByTestId } = renderWithRouter(() => <Layout />);
       const $link = queryByTestId("Home-link") as HTMLAnchorElement;
       fireEvent.click($link);
@@ -21,10 +20,18 @@ describe("Layout", () => {
   });
 
   describe("on screen width < 768px", () => {
-    const renderMobileLayout = () => ({
-      ...renderWithRouter(() => <Layout mockWidth={767} />),
+    const renderMobileLayout = (
+      mockOnToggle?: () => void,
+      mockSidebar?: boolean
+    ) => ({
+      ...renderWithRouter(() => (
+        <Layout
+          mockWidth={767}
+          mockOnToggle={mockOnToggle}
+          mockSidebar={mockSidebar}
+        />
+      )),
     });
-
 
     it("renders mobile layout", () => {
       const { queryByTestId } = renderMobileLayout();
@@ -32,15 +39,21 @@ describe("Layout", () => {
       expect(queryByTestId("layout-mobile")).toBeTruthy();
     });
 
-    it.todo("toggles sidebar on 'sidebar-button' click ", () => {
-      const { queryByTestId } = renderMobileLayout();
-      const $button = queryByTestId("sidebar-button") as HTMLButtonElement
-      fireEvent.click($button)
+    it("toggles sidebar on 'sidebar-button' click ", () => {
+      const mockOnToggle = jest.fn();
+      const mockSidebar = false;
+
+      const { queryByTestId } = renderMobileLayout(mockOnToggle);
+      const $button = queryByTestId("sidebar-button") as HTMLButtonElement;
+      fireEvent.click($button);
+      expect(mockOnToggle).toHaveBeenCalledWith(!mockSidebar);
     });
 
-    it.todo("redirects to '/' on 'Kanban-link' click ", () => {
+    it("directs to '/' on 'Kanban-link' click ", () => {
       const { history, queryByTestId } = renderMobileLayout();
       const $link = queryByTestId("Kanban-link") as HTMLAnchorElement;
+      const $button = queryByTestId("sidebar-button") as HTMLButtonElement;
+      fireEvent.click($button);
       fireEvent.click($link);
       expect(history.location.pathname).toEqual("/kanban");
     });

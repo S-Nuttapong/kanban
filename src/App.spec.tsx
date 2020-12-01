@@ -2,6 +2,9 @@ import React from "react";
 import { App } from "./App";
 import { renderWithRouter, Wrapper } from "./testHelper";
 
+jest.mock("./pages/home/Home", () => ({ Home: () => <div>Home</div> }));
+jest.mock("./pages/kanban/Kanban", () => ({ Kanban: () => <div>Kanban</div> }));
+
 const renderApp = (router?: string) => ({
   ...renderWithRouter(
     () => (
@@ -15,19 +18,19 @@ const renderApp = (router?: string) => ({
 
 describe("App", () => {
   it("renders correctly", () => {
-    const { getByTestId } = renderApp();
-    expect(getByTestId("Home")).toBeTruthy();
+    const { container } = renderApp();
+    expect(container.innerHTML).toMatch("Home");
   });
 
   describe("Routing", () => {
     it("renders Home page on '/' ", () => {
-      const { getByTestId } = renderApp("/");
-      expect(getByTestId("Home")).toBeTruthy();
+      const { container } = renderApp("/");
+      expect(container.innerHTML).toMatch("Home");
     });
 
     it("renders Kanban page on '/kanban'", () => {
-      const { getByTestId } = renderApp("/kanban");
-      expect(getByTestId("newItem-button")).toBeTruthy();
+      const { container } = renderApp("/kanban");
+      expect(container.innerHTML).toMatch("Kanban");
     });
   });
 });

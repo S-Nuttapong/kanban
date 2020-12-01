@@ -26,8 +26,19 @@ const LayoutDesktop = ({
 const LayoutMobile = ({
   children,
   items,
+  mockOnToggle,
+  mockSidebar
 }: React.PropsWithChildren<SidebarData>) => {
-  const [sidebar, setSidebar] = useState(false);
+  let [sidebar, setSidebar] = useState(false);
+
+  if (mockOnToggle) {
+    setSidebar = mockOnToggle;
+  }
+
+  if (mockSidebar) {
+    sidebar = mockSidebar;
+  }
+
   return (
     <Main data-testid="layout-mobile">
       <NavbarMobile sidebar={sidebar} items={items} />
@@ -38,10 +49,16 @@ const LayoutMobile = ({
   );
 };
 
+interface LayoutProps extends Omit<SidebarData, "items"> {
+  mockWidth?: number
+
+}
 export const Layout = ({
   children,
   mockWidth,
-}: React.PropsWithChildren<{ mockWidth?: number }>) => {
+  mockOnToggle,
+  mockSidebar
+}: React.PropsWithChildren<LayoutProps>) => {
   let width = useViewport();
 
   if (mockWidth) {
@@ -51,6 +68,8 @@ export const Layout = ({
   return width > 768 ? (
     <LayoutDesktop items={items}>{children}</LayoutDesktop>
   ) : (
-    <LayoutMobile items={items}>{children}</LayoutMobile>
+    <LayoutMobile items={items} mockOnToggle={mockOnToggle} mockSidebar={mockSidebar}>
+      {children}
+    </LayoutMobile>
   );
 };

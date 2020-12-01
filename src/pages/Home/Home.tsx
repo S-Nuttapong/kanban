@@ -5,9 +5,9 @@ import "../../shared/Motion/Motion.css";
 
 export const Home = () => (
   <MotionWrapper className="HomeMotion">
-    <span data-testid="Home">San-Kanban</span>
+    <span data-testid="home-banner">San-Kanban</span>
     <Link to="/kanban">
-      <button>View Boards</button>
+      <button data-testid="home-button">View Boards</button>
     </Link>
   </MotionWrapper>
 );
