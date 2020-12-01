@@ -5,6 +5,7 @@ import { Layout } from "./shared/layout/Layout";
 import { Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
+
 export const App = () => (
   <Layout>
     <AnimatePresence>
