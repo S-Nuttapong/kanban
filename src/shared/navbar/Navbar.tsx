@@ -10,13 +10,13 @@ interface NavbarMobileProps extends SidebarData {
   sidebar: boolean;
 }
 
-const MenuItem = ({ items }: SidebarData) => (
+export const MenuItem = ({ items }: SidebarData) => (
   <React.Fragment>
-    <NavBarMenuItem>
+    <NavBarMenuItem data-testid="menuItem">
       <GiIcons.GiMountainCave />
       {items.map((item, i) => (
         <li key={i} className={item.cName}>
-          <Link data-testid={`${item.title}-link`} to={item.path}>
+          <Link data-testid={`menuItem-link`} to={item.path}>
             {item.icon}
             <span>{item.title}</span>
           </Link>
@@ -36,7 +36,7 @@ const MenuItem = ({ items }: SidebarData) => (
 export const NavbarMobile = ({ items, sidebar }: NavbarMobileProps) => {
   return (
     <IconContext.Provider value={{ color: "white" }}>
-      <NavMenuMobile data-testid="nav-mobile" isToggled={sidebar}>
+      <NavMenuMobile isToggled={sidebar}>
         <MenuItem items={items} />
       </NavMenuMobile>
     </IconContext.Provider>
@@ -46,7 +46,7 @@ export const NavbarMobile = ({ items, sidebar }: NavbarMobileProps) => {
 export const NavbarDesktop = ({ items }: SidebarData) => {
   return (
     <IconContext.Provider value={{ color: "white" }}>
-      <NavMenuDesktop data-testid="nav-desktop">
+      <NavMenuDesktop>
         <MenuItem items={items} />
       </NavMenuDesktop>
     </IconContext.Provider>

@@ -3,8 +3,8 @@ import { IconBaseProps } from "react-icons";
 interface List {
   title: string;
   path: string;
-  icon: IconBaseProps;
-  cName: string;
+  icon?: IconBaseProps;
+  cName?: string;
 }
 
 export interface SidebarData {

@@ -11,11 +11,18 @@ describe("Layout", () => {
       expect(queryByTestId("layout-mobile")).toBeFalsy();
     });
 
-    it("directs to '/' on 'Home-link' click ", () => {
-      const { history, queryByTestId } = renderWithRouter(() => <Layout />);
-      const $link = queryByTestId("Home-link") as HTMLAnchorElement;
+    it("directs to '/' on 'Home' link click ", () => {
+      const { history, queryAllByTestId } = renderWithRouter(() => <Layout />);
+      const $link = queryAllByTestId("menuItem-link")[0] as HTMLAnchorElement;
       fireEvent.click($link);
       expect(history.location.pathname).toEqual("/");
+    });
+
+    it("directs to '/' on 'Kanban' link click ", () => {
+      const { history, queryAllByTestId } = renderWithRouter(() => <Layout />);
+      const $link = queryAllByTestId("menuItem-link")[1] as HTMLAnchorElement;
+      fireEvent.click($link);
+      expect(history.location.pathname).toEqual("/kanban");
     });
   });
 
@@ -49,9 +56,18 @@ describe("Layout", () => {
       expect(mockOnToggle).toHaveBeenCalledWith(!mockSidebar);
     });
 
-    it("directs to '/' on 'Kanban-link' click ", () => {
-      const { history, queryByTestId } = renderMobileLayout();
-      const $link = queryByTestId("Kanban-link") as HTMLAnchorElement;
+    it("directs to '/' on 'Home' link click ", () => {
+      const { history, queryAllByTestId, queryByTestId } = renderMobileLayout();
+      const $link = queryAllByTestId("menuItem-link")[0] as HTMLAnchorElement;
+      const $button = queryByTestId("sidebar-button") as HTMLButtonElement;
+      fireEvent.click($button);
+      fireEvent.click($link);
+      expect(history.location.pathname).toEqual("/");
+    });
+
+    it("directs to '/kanban' on 'Kanban' link click ", () => {
+      const { history, queryAllByTestId, queryByTestId } = renderMobileLayout();
+      const $link = queryAllByTestId("menuItem-link")[1] as HTMLAnchorElement;
       const $button = queryByTestId("sidebar-button") as HTMLButtonElement;
       fireEvent.click($button);
       fireEvent.click($link);
