@@ -16,7 +16,7 @@ const MenuItem = ({ items }: SidebarData) => (
       <GiIcons.GiMountainCave />
       {items.map((item, i) => (
         <li key={i} className={item.cName}>
-          <Link to={item.path}>
+          <Link data-testid={`${item.title}-link`} to={item.path}>
             {item.icon}
             <span>{item.title}</span>
           </Link>
@@ -36,7 +36,7 @@ const MenuItem = ({ items }: SidebarData) => (
 export const NavbarMobile = ({ items, sidebar }: NavbarMobileProps) => {
   return (
     <IconContext.Provider value={{ color: "white" }}>
-      <NavMenuMobile isToggled={sidebar}>
+      <NavMenuMobile data-testid="nav-mobile" isToggled={sidebar}>
         <MenuItem items={items} />
       </NavMenuMobile>
     </IconContext.Provider>
@@ -46,7 +46,7 @@ export const NavbarMobile = ({ items, sidebar }: NavbarMobileProps) => {
 export const NavbarDesktop = ({ items }: SidebarData) => {
   return (
     <IconContext.Provider value={{ color: "white" }}>
-      <NavMenuDesktop>
+      <NavMenuDesktop data-testid="nav-desktop">
         <MenuItem items={items} />
       </NavMenuDesktop>
     </IconContext.Provider>

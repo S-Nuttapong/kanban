@@ -162,9 +162,9 @@ export const ContentMobile = ({
       navbarComponent={
         <React.Fragment>
           <MenuBar to="#">
-            <FaIcons.FaBars onClick={() => onToggle(!sidebar)} />
+            <FaIcons.FaBars data-testid="sidebar-button" onClick={() => onToggle(!sidebar)} />
           </MenuBar>
-          <Backdrop onClick={() => onToggle(!sidebar)} isToggled={sidebar} />
+          <Backdrop data-testid="backdrop-button" onClick={() => onToggle(!sidebar)} isToggled={sidebar} />
         </React.Fragment>
       }
     >

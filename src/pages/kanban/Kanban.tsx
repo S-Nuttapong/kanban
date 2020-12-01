@@ -16,7 +16,15 @@ export const Kanban = () => {
       <CustomPreview />
 
       {state.lists.map((list, i) => {
-        return <Board id={list.id} text={list.text} key={list.id} index={i} />;
+        return (
+          <Board
+            id={list.id}
+            text={list.text}
+            key={list.id}
+            index={i}
+            data-testid="Board"
+          />
+        );
       })}
       <AddNewBoard
         onAdd={(formItem) =>

@@ -1,22 +1,33 @@
 import React from "react";
 import { App } from "./App";
-import { renderWithRouter} from "./testHelper";
+import { renderWithRouter, Wrapper } from "./testHelper";
+
+const renderApp = (router?: string) => ({
+  ...renderWithRouter(
+    () => (
+      <Wrapper>
+        <App />
+      </Wrapper>
+    ),
+    router
+  ),
+});
 
 describe("App", () => {
   it("renders correctly", () => {
-    const { getByTestId } = renderWithRouter(() => <App />);
-    expect(getByTestId('Home')).toBeTruthy()
+    const { getByTestId } = renderApp();
+    expect(getByTestId("Home")).toBeTruthy();
   });
 
   describe("Routing", () => {
     it("renders Home page on '/' ", () => {
-      const { getByTestId } = renderWithRouter(() => <App />);
-      expect(getByTestId('Home')).toBeTruthy()
+      const { getByTestId } = renderApp("/");
+      expect(getByTestId("Home")).toBeTruthy();
     });
 
     it("renders Kanban page on '/kanban'", () => {
-      const { container } = renderWithRouter(() => <App />, "/kanban");
-      console.log(container.innerHTML);
+      const { getByTestId } = renderApp("/kanban");
+      expect(getByTestId("newItem-button")).toBeTruthy();
     });
   });
 });

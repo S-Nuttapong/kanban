@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { sidebarData as items  } from "../constant";
+import { sidebarData as items } from "../constant";
 import { SidebarData } from "../interface";
 import { NavbarMobile, NavbarDesktop } from "../navbar/Navbar";
 import { ContentMobile, Content } from "../content/Content";
@@ -11,14 +11,13 @@ const Main = styled.main`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
- 
 `;
 
 const LayoutDesktop = ({
   children,
   items,
 }: React.PropsWithChildren<SidebarData>) => (
-  <Main>
+  <Main data-testid="layout-desktop">
     <NavbarDesktop items={items} />
     <Content>{children}</Content>
   </Main>
@@ -30,7 +29,7 @@ const LayoutMobile = ({
 }: React.PropsWithChildren<SidebarData>) => {
   const [sidebar, setSidebar] = useState(false);
   return (
-    <Main>
+    <Main data-testid="layout-mobile">
       <NavbarMobile sidebar={sidebar} items={items} />
       <ContentMobile sidebar={sidebar} onToggle={() => setSidebar(!sidebar)}>
         {children}
@@ -39,8 +38,16 @@ const LayoutMobile = ({
   );
 };
 
-export const Layout = ({ children }: React.PropsWithChildren<{}>) => {
-  const width = useViewport();
+export const Layout = ({
+  children,
+  mockWidth,
+}: React.PropsWithChildren<{ mockWidth?: number }>) => {
+  let width = useViewport();
+
+  if (mockWidth) {
+    width = mockWidth;
+  }
+
   return width > 768 ? (
     <LayoutDesktop items={items}>{children}</LayoutDesktop>
   ) : (

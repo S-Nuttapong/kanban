@@ -26,11 +26,7 @@ export const renderWithRouter = (
   }
 
   return {
-    ...render(
-      <Router history={history}>
-        <Wrapper>{renderComponent()}</Wrapper>
-      </Router>
-    ),
+    ...render(<Router history={history}>{renderComponent()}</Router>),
     history,
   };
 };
