@@ -1,5 +1,5 @@
 import React from "react";
-import { AddNewItem } from "./AddNewItem";
+import { AddNewItem } from "../../../components copy/newitem/AddNewItem";
 import { render, fireEvent } from "@testing-library/react";
 
 describe("AddNewItem", () => {

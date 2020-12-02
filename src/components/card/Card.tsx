@@ -44,6 +44,7 @@ export const Card = ({
       isHidden={isHidden(id, "CARD", state.dragItem, cardPreview)}
       cardPreview={cardPreview}
       ref={cardRef}
+      data-testid="card-container"
     >
       <div>
         {" "}

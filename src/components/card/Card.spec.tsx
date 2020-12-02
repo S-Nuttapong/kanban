@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "./Card";
+import { Card } from "../../../components copy/card/Card";
 import { render } from "@testing-library/react";
 import { Wrapper } from "../../testHelper";
 

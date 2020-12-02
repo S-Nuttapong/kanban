@@ -22,6 +22,7 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
   drag(drop(boardRef));
   return (
     <BoardContainer
+      data-testid="board-container"
       boardPreview={boardPreview}
       isHidden={isHidden(id, "BOARD", state.dragItem, boardPreview)}
       ref={boardRef}
@@ -54,7 +55,7 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
           showForm={showForm}
         />
       </div>
-      <AddNewItemButton addTask={true} onClick={() => setShowForm(true)}>
+      <AddNewItemButton data-testid="newCard-button" addTask={true} onClick={() => setShowForm(true)}>
         + Add New Task
       </AddNewItemButton>
     </BoardContainer>

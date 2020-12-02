@@ -82,10 +82,12 @@ const NewItemForm = ({
         id={`${title}-addItemForm`}
         onSubmit={handleSubmit(onFormSubmit)}
         isBoard={isBoard}
+        data-testid="newItem-form"
       >
         <TextField
           name={title}
           id="outlined-basic"
+          inputProps={{ "data-testid": "newItem-input" }}
           label={title}
           variant={isBoard ? ("filled" as any) : ("outlined" as any)}
           size="small"
@@ -102,7 +104,7 @@ const NewItemForm = ({
           })}
 
         <div className="flex bg-none mt-2 mb-0">
-          <NewItemButton form={`${title}-addItemForm`} type="submit">
+          <NewItemButton data-testid="submit-button" form={`${title}-addItemForm`} type="submit">
             Create
           </NewItemButton>
           <CancelButton

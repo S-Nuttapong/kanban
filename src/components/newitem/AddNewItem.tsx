@@ -15,8 +15,8 @@ export const AddNewBoard = ({ onAdd }: Omit<ItemFormProps, "onCancel">) => {
       onCancel={() => setShowForm(false)}
     />
   ) : (
-    <AddNewItemButton data-testid="newItem-button" addTask={false} onClick={() => setShowForm(true)}>
-      Add New Board
+    <AddNewItemButton data-testid="newBaord-button" addTask={false} onClick={() => setShowForm(true)}>
+      + Add New Board
     </AddNewItemButton>
   );
 };

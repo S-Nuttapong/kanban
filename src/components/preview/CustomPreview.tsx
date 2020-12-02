@@ -27,7 +27,7 @@ export const CustomPreview = () => {
 
 
   return isDragging ? (
-    <CustomDragLayerContainer style={getItemStyle(currentOffSet)}>
+    <CustomDragLayerContainer data-testid="preview-container" style={getItemStyle(currentOffSet)}>
       {item.type === "BOARD" ? (
         <Board
           id={item.id}
