@@ -22,7 +22,6 @@ export const Kanban = () => {
             text={list.text}
             key={list.id}
             index={i}
-            data-testid="Board"
           />
         );
       })}
