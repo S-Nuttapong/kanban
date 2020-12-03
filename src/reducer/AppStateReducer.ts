@@ -1,7 +1,7 @@
 import { AppState, Action } from "../interface/IAppStateReducer";
 import nanoid from "nanoid";
 import { switchItem } from "../utils/switchItem";
-import {  priorityOptions } from "../shared/constant";
+import { priorityOptions } from "../shared/constant";
 
 export const AppStateReducer = (state: AppState, action: Action) => {
   switch (action.type) {
@@ -40,6 +40,7 @@ export const AppStateReducer = (state: AppState, action: Action) => {
         message: "Board deleted",
         open: true,
       };
+
       return { ...state, alert: alert };
     }
     case "DELETE_CARD": {

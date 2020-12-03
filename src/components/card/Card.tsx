@@ -8,7 +8,6 @@ import { useAppState } from "../../provider/AppStateContext";
 import { Badge, PriorityIcon } from "../badge/Badge";
 import { DeleteButton } from "../button/Button";
 
-
 export const Card = ({
   id,
   text,
@@ -63,8 +62,8 @@ export const Card = ({
           : null}
       </BadgeContainer>
       <BadgeContainer>
-        {priority ? (
-          <div className="flex space-between width-100">
+        <div className="flex space-between width-100">
+          {priority ? (
             <div className="flex align-center">
               {" "}
               <PriorityIcon text={priority.label} />
@@ -74,18 +73,18 @@ export const Card = ({
                 classname={"priority"}
               />
             </div>
-
-            <DeleteButton
-              message="Are you sure? Deleting a task cannot be undone."
-              action={() =>
-                dispatch({
-                  type: "DELETE_CARD",
-                  payload: { boardIndex, cardIndex: index },
-                })
-              }
-            />
-          </div>
-        ) : null}
+          ) : null}
+          
+          <DeleteButton
+            message="Are you sure? Deleting a task cannot be undone."
+            action={() =>
+              dispatch({
+                type: "DELETE_CARD",
+                payload: { boardIndex, cardIndex: index },
+              })
+            }
+          />
+        </div>
       </BadgeContainer>
     </CardContainer>
   );

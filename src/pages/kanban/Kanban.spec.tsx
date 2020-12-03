@@ -1,6 +1,6 @@
 import React from "react";
 import { Kanban } from "./Kanban";
-import { fireEvent, queryAllByTestId, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Wrapper } from "../../testHelper";
 import { act } from "react-dom/test-utils";
 import { AppState, List } from "../../interface/IAppStateReducer";
@@ -22,7 +22,7 @@ const renderKanban = (list: List[] = []) => {
 describe("Home", () => {
   describe("with no data", () => {
     it("renders '+ Add New Board' button", () => {
-      const { queryByTestId } = renderKanban([]);
+      const { queryByTestId } = renderKanban();
       const $button = queryByTestId("newBaord-button") as HTMLButtonElement;
       expect($button?.innerHTML).toMatch("+ Add New Board");
     });
@@ -30,29 +30,52 @@ describe("Home", () => {
     describe("on create new Board", () => {
       it("renders new Board with correct behavior", async () => {
         const boardTitle = "testBoard";
-        const { queryByTestId } = renderKanban([]);
-        const $button = queryByTestId("newBaord-button") as HTMLDivElement;
+        const { queryByTestId } = renderKanban();
 
-        act(() => {
-          fireEvent.click($button);
-        });
+        fireEvent.click(queryByTestId("newBaord-button") as HTMLDivElement);
 
         expect(queryByTestId("newItem-form")).toBeTruthy();
         expect(queryByTestId("newBaord-button")).toBeFalsy();
 
         const $input = queryByTestId("newItem-input") as HTMLInputElement;
-        const $submit = queryByTestId("submit-button") as HTMLButtonElement;
 
         await act(async () => {
           fireEvent.change($input, {
             target: { value: boardTitle },
           });
           expect($input.value).toEqual(boardTitle);
-          fireEvent.submit($submit);
+          fireEvent.submit(queryByTestId("submit-button") as HTMLButtonElement);
         });
 
         expect(queryByTestId("newItem-form")).toBeFalsy();
         expect(queryByTestId("board-container")?.innerHTML).toMatch(boardTitle);
+      });
+
+      it("does not create new Board on 'Cancel' click", () => {
+        const { queryByTestId, queryByText } = renderKanban();
+
+        fireEvent.click(queryByTestId("newBaord-button") as HTMLDivElement);;
+        expect(queryByTestId("newItem-form")).toBeTruthy();
+
+        fireEvent.click(queryByTestId("cancel-button") as HTMLButtonElement);
+        fireEvent.click(queryByText("OK") as HTMLButtonElement);
+
+        expect(queryByTestId("newItem-form")).toBeFalsy();
+        expect(queryByTestId("board-container")).toBeFalsy();
+      });
+
+      it("prevents creating new card with no title", async () => {
+        const { queryByTestId } = renderKanban();
+  
+        fireEvent.click(queryByTestId("newBaord-button") as HTMLDivElement);;
+        expect(queryByTestId("newItem-form")).toBeTruthy();
+  
+        await act(async () => {
+          fireEvent.submit(queryByTestId("submit-button") as HTMLButtonElement);
+        });
+  
+        expect(queryByTestId("newItem-form")).toBeTruthy();
+        expect(queryByTestId("board-container")).toBeFalsy();
       });
     });
   });
@@ -79,23 +102,19 @@ describe("Home", () => {
       const cardTitle = "testCard";
       it("creates new Card component", async () => {
         const { queryByTestId } = renderKanban(list);
-        const $button = queryByTestId("newCard-button") as HTMLButtonElement;
 
-        act(() => {
-          fireEvent.click($button);
-        });
+        fireEvent.click(queryByTestId("newCard-button") as HTMLButtonElement);
 
         expect(queryByTestId("newItem-form")).toBeTruthy();
 
         const $input = queryByTestId("newItem-input") as HTMLInputElement;
-        const $submit = queryByTestId("submit-button") as HTMLButtonElement;
 
         await act(async () => {
           fireEvent.change($input, {
             target: { value: cardTitle },
           });
           expect($input.value).toEqual(cardTitle);
-          fireEvent.submit($submit);
+          fireEvent.submit(queryByTestId("submit-button") as HTMLButtonElement);
         });
 
         expect(queryByTestId("newItem-form")).toBeFalsy();

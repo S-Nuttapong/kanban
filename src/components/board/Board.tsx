@@ -20,6 +20,11 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
   const drop = useDropBoard({ id, text, index, type: "BOARD" });
 
   drag(drop(boardRef));
+
+  if (!state.lists[index]) {
+    return <React.Fragment />;
+  }
+
   return (
     <BoardContainer
       data-testid="board-container"
@@ -55,7 +60,11 @@ export const Board = ({ id, text, index, boardPreview }: BoardProps) => {
           showForm={showForm}
         />
       </div>
-      <AddNewItemButton data-testid="newCard-button" addTask={true} onClick={() => setShowForm(true)}>
+      <AddNewItemButton
+        data-testid="newCard-button"
+        addTask={true}
+        onClick={() => setShowForm(true)}
+      >
         + Add New Task
       </AddNewItemButton>
     </BoardContainer>

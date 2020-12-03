@@ -40,7 +40,7 @@ export const DeleteButton = ({
   <div>
     <DialogButton action={action} message={message}>
       {(handleClickOpen) => (
-        <IconButton aria-label="delete" onClick={handleClickOpen}>
+        <IconButton data-testid="delete-button" aria-label="delete" onClick={handleClickOpen}>
           <DeleteIcon />
         </IconButton>
       )}
@@ -60,6 +60,7 @@ export const CancelButton = ({ action }: Pick<DialogProps, "action">) => (
           aria-label="cancel"
           className="ml-3"
           onClick={handleClickOpen}
+          data-testid="cancel-button"
         >
           Cancel
         </CanCelButton>
